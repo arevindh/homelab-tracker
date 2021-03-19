@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Settings;
 use Illuminate\Support\Facades\Route;
@@ -23,4 +24,5 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/settings', Settings::class)->name('settings');
+    Route::get('/ajax/latest',[DashboardController::class,'getLatest'])->name('chart.latest');
 });

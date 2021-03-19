@@ -25,5 +25,5 @@ Route::get('test', function(){
 
     // return $interfaces = array_unique(array_filter(explode(PHP_EOL,$interfaces_list)));
 
-    return Speedtest::get();
+    return Speedtest::orderBy('timestamp')->get();
 });

@@ -18,6 +18,10 @@ mix.js('resources/js/app.js', 'public/js')
         require('autoprefixer'),
     ]);
 
+mix.copy('node_modules/chart.js/dist/Chart.min.js','public/js/chart.js');
+
+mix.copy('node_modules/chart.js/dist/Chart.min.css', 'public/css/chart.css');
+
 if (mix.inProduction()) {
     mix.version();
 }
