@@ -37,6 +37,6 @@ class AcceptEULACommand extends Command
      */
     public function handle()
     {
-        shell_exec(config('speedtest.home') . ' && ' . app_path() . '/Bin/speedtest --accept-license --accept-gdpr');
+        shell_exec(storage_path() . '/speedtest-cli/cli/speedtest --accept-license --accept-gdpr');
     }
 }

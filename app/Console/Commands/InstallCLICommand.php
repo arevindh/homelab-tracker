@@ -61,19 +61,24 @@ class InstallCLICommand extends Command
                 break;
         }
 
+        $this->info("Speedtest CLI is maintained by the Ookla team (https://www.speedtest.net/apps/cli) ");
+
         $dl_url = "https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-$arch-linux.tgz";
-        $info = pathinfo($dl_url);
         $contents = file_get_contents($dl_url);
+
+        $this->info("Downloading File " . $dl_url);
+
         $file = storage_path() . '/speedtest-cli/temp/speedtest.tar.gz';
         file_put_contents($file, $contents);
 
-        echo $file;
+        $this->info("Extracting speedtest.tar.gz");
 
         $phar = new PharData($file);
-        $phar->extractTo(storage_path() . '/speedtest-cli/cli','speedtest');
+        $phar->extractTo(storage_path() . '/speedtest-cli/cli', 'speedtest', true);
 
+        $this->info("Clearning up...");
         unlink($file);
 
-        // exec('tar –xvzf ' . $file . ' -C ' . storage_path() . '/speedtest/bin');
+        $this->info("Installed");
     }
 }
