@@ -4,6 +4,7 @@
 /storage/*.key
 /storage/database/*.sqlite
 /storage/bin
+/storage/speedtest-cli/*
 /vendor
 .env
 .env.backup

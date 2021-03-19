@@ -63,14 +63,16 @@ class InstallCLICommand extends Command
 
         $dl_url = "https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-$arch-linux.tgz";
         $info = pathinfo($dl_url);
-        // $contents = file_get_contents($dl_url);
-        $file = storage_path() . '/speedtest-cli/speedtest.tar.gz';
-        // file_put_contents($file, $contents);
+        $contents = file_get_contents($dl_url);
+        $file = storage_path() . '/speedtest-cli/temp/speedtest.tar.gz';
+        file_put_contents($file, $contents);
 
         echo $file;
 
         $phar = new PharData($file);
-        $phar->extractTo(storage_path() . '/speedtest-cli');
+        $phar->extractTo(storage_path() . '/speedtest-cli/cli','speedtest');
+
+        unlink($file);
 
         // exec('tar –xvzf ' . $file . ' -C ' . storage_path() . '/speedtest/bin');
     }
