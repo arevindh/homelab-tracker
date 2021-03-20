@@ -20,6 +20,10 @@ class DashboardController extends Controller
             ->get(['ping_latency', 'ping_jitter', 'download_bandwidth', 'upload_bandwidth', 'timestamp', 'isp', 'id']);
     }
 
+    public function getSingleResult($id){
+        return Speedtest::find($id);
+    }
+
     public function getStatistics()
     {
         return Speedtest::where('status', 'success')
