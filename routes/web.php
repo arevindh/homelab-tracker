@@ -24,6 +24,7 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/settings', Settings::class)->name('settings');
-    Route::get('/ajax/latest',[DashboardController::class,'getLatest'])->name('chart.latest');
-    Route::get('/ajax/stats',[DashboardController::class,'getStatistics'])->name('statistics.latest');
+    Route::get('/ajax/latest', [DashboardController::class, 'getLatest'])->name('chart.latest');
+    Route::get('/ajax/speedtest/{id}', [DashboardController::class, 'getSingleResult'])->name('chart.single');
+    Route::get('/ajax/stats', [DashboardController::class, 'getStatistics'])->name('statistics.latest');
 });
