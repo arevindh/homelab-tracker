@@ -5,33 +5,44 @@
             {{ __('Speedtest History') }}
         </h2>
     </x-slot>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white p-4">
 
 
         <table id="speedtestresults" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
-        <thead>
-            <tr>
-                <th>download_bandwidth</th>
-                <th>upload_bandwidth</th>
-                <th>ping_jitter</th>
-                <th>ping_latency</th>
-                <th>server_name</th>
-                <th>server_location</th>
-                <th>timestamp</th>
-            </tr>
-        </thead>
+            <thead>
+                <tr>
+                    <th class="text-left">Download</th>
+                    <th class="text-left">Upload</th>
+                    <th class="text-left">Jitter</th>
+                    <th class="text-left">Latency</th>
+                    <th class="text-left">Test Server</th>
+                    <th class="text-left">Server Location</th>
+                    <th class="text-left">Timestamp</th>
+                </tr>
+            </thead>
         </table>
 
         <script>
             $(document).ready(function() {
                 $('#speedtestresults').DataTable({
                     "ajax": "/ajax/speedtest/history",
-                    "columns": [
-                        {
-                            "data": "download_bandwidth"
+                    "processing": true,
+                    "serverSide": true,
+                    "searching": false,
+                    "order": [
+                        [6, 'desc']
+                    ],
+                    "columns": [{
+                            "data": "download_bandwidth",
+                            "render": function(value) {
+                                return (parseInt(value) / 124000).toFixed(2) + ' Mbps';
+                            }
                         },
                         {
-                            "data": "upload_bandwidth"
+                            "data": "upload_bandwidth",
+                            "render": function(value) {
+                                return (parseInt(value) / 124000).toFixed(2) + ' Mbps';
+                            }
                         },
                         {
                             "data": "ping_jitter"
@@ -46,7 +57,11 @@
                             "data": "server_location"
                         },
                         {
-                            "data": "timestamp"
+                            "data": "timestamp",
+                            "searchable": false,
+                            "render": function(value) {
+                                return moment.utc(value).local().format('YYYY-MM-DD HH:mm:ss');
+                            }
                         }
                     ]
                 });
