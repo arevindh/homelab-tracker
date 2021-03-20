@@ -5,10 +5,11 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-    <div class="px-4 py-5 bg-white dark:bg-gray-800 space-y-6 sm:p-6">
-        <canvas id="speedtestChart" width="400" height="400"></canvas>
-    </div>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
+        <div class="px-4 py-5 bg-white space-y-6 sm:p-6   ">
+        <!-- dark:bg-gray-800 -->
+            <canvas id="speedtestChart" width="400" height="400"></canvas>
+        </div>
 
         <script>
             var latest_data = {
@@ -20,6 +21,12 @@
                 label: [],
             };
 
+            // var ticksColor = "#bec5cb";
+            // var gridColor = "#bec5cb";
+
+            var ticksColor = "#000";
+            var gridColor = "#000";
+
             function loadLatestSpeedtest() {
                 $.ajax({
                     url: "{{route('chart.latest')}}",
@@ -27,9 +34,9 @@
                 }).done(function(results) {
                     results.forEach(function(packet) {
                         latest_data.label.push(moment.utc(packet.timestamp).format('lll'));
-                        latest_data.upload.push(parseFloat((packet.upload_bandwidth)/125).toFixed(2));
-                        latest_data.download.push((parseFloat(packet.download_bandwidth)/125).toFixed(2) );
-                        latest_data.isp.push(parseFloat(packet.ping_latency));
+                        latest_data.upload.push(parseFloat((packet.upload_bandwidth) / 125).toFixed(2));
+                        latest_data.download.push((parseFloat(packet.download_bandwidth) / 125).toFixed(2));
+                        latest_data.isp.push(parseFloat(packet.isp));
                         latest_data.ping_latency.push(parseFloat(packet.ping_latency));
                         latest_data.ping_jitter.push(parseFloat(packet.ping_jitter));
                     });
@@ -60,16 +67,16 @@
                                 },
                                 {
                                     label: "Ping ms",
-                                    data: latest_data.ping,
+                                    data: latest_data.ping_latency,
                                     backgroundColor: "rgba(69,237,33,1)",
                                     fill: false,
                                     borderColor: "rgba(69,237,33,1)",
                                     borderWidth: 1,
-                                    borderDash: [5, 5],
                                     yAxisID: "y-axis-2"
                                 }
                             ]
                         },
+
                         options: {
                             responsive: true,
                             maintainAspectRatio: false,
@@ -77,14 +84,22 @@
                                 display: false
                             },
                             scales: {
-                                yAxes: [{
+                                yAxes: [
+
+
+                                    {
                                         type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
                                         display: true,
                                         position: "left",
                                         id: "y-axis-1",
                                         ticks: {
-                                            min: 0
-                                        }
+                                            min: 0,
+                                            fontColor: ticksColor
+                                        },
+                                        gridLines: {
+                                            display: true,
+                                        },
+
                                     },
                                     {
                                         type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
@@ -92,8 +107,13 @@
                                         position: "left",
                                         id: "y-axis-1",
                                         ticks: {
-                                            min: 0
-                                        }
+                                            min: 0,
+                                            fontColor: ticksColor
+                                        },
+                                        gridLines: {
+                                            display: true,
+                                        },
+                                        
                                     },
                                     {
                                         type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
@@ -101,28 +121,39 @@
                                         position: "right",
                                         id: "y-axis-2",
                                         ticks: {
-                                            min: 0
+                                            min: 0,
+                                            fontColor: ticksColor
                                         }
+                                        ,
+                                        gridLines: {
+                                            display: false,
+                                        },
                                     }
                                 ],
                                 xAxes: [{
                                     // type :'time',
+                                    gridLines: {
+                                            display: true,
+                                        },
                                     display: true,
                                     scaleLabel: {
                                         display: true
                                     },
+
                                     ticks: {
                                         autoSkip: true,
-                                        maxTicksLimit: 8,
+                                        maxTicksLimit: 7,
                                         maxRotation: 0,
-                                        minRotation: 0
+                                        minRotation: 0,
+                                        fontColor: ticksColor
                                     }
                                 }]
                             },
                             tooltips: {
                                 enabled: true,
                                 mode: "x-axis",
-                                intersect: false
+                                intersect: false,
+                                fontColor: ticksColor
                             }
                         }
 

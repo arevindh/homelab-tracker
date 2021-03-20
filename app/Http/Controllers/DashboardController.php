@@ -16,6 +16,6 @@ class DashboardController extends Controller
     {
         return Speedtest::where('status', 'success')
             ->orderBy('timestamp')
-            ->get(['ping_latency', 'ping_jitter', 'download_bandwidth', 'upload_bandwidth', 'timestamp', 'isp', 'id']);
+            ->get(['ping_latency', 'ping_jitter', 'download_bandwidth', 'upload_bandwidth', 'timestamp', 'isp', 'id'])->take(50);
     }
 }
