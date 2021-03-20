@@ -199,6 +199,8 @@
                                         const modal = document.querySelector('.modal');
                                         modal.classList.remove('hidden')
                                         const id = ids[data.dataPointIndex]
+                                        document.getElementById("modal-content").classList.add('hidden');
+                                            document.getElementById("modal-loader").classList.remove('hidden');
                                         fetch(`/ajax/speedtest/${id}`).then(res=>{
                                             return res.json();
                                         }).then(res=>{
