@@ -17,7 +17,8 @@ class DashboardController extends Controller
     {
         return Speedtest::where('status', 'success')
             ->orderBy('timestamp')
-            ->get(['ping_latency', 'ping_jitter', 'download_bandwidth', 'upload_bandwidth', 'timestamp', 'isp', 'id']);
+            ->select('id','timestamp', 'isp','ping_jitter','ping_latency', DB::raw('(download_bandwidth) as download_bandwidth,(upload_bandwidth) as upload_bandwidth'))
+            ->get();
     }
 
     public function getSingleResult($id){

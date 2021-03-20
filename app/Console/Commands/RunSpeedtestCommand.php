@@ -38,6 +38,7 @@ class RunSpeedtestCommand extends Command
      */
     public function handle()
     {
+        $this->info("Running new speedtest from commandline");
         $speedtest = new Speedtest();
         $speedtest->status = "inprogress";
         $speedtest->save();
@@ -65,9 +66,11 @@ class RunSpeedtestCommand extends Command
             $speedtest->timestamp = $decoded_op->timestamp;
             $speedtest->status = "success";
             $speedtest->save();
+            $this->info("Speedtest successful");
         } catch (\Throwable $th) {
             $speedtest->status = "failed";
             $speedtest->save();
+            $this->info("Speedtest failed");
             throw $th;
         }
     }

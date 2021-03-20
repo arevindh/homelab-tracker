@@ -14,8 +14,8 @@
                         <div class="icon w-14  rounded-full mr-3">
                             <span class="material-icons" style="color: #39B29D;
     font-size: 58px;">
-                               cloud_download
-                                </span>
+                                cloud_download
+                            </span>
                         </div>
                         <div class="flex flex-col justify-center">
                             <div class="text-lg">{{convertToReadableSize($stats->avg_download_bandwidth)}}</div>
@@ -33,12 +33,12 @@
                         <div class="icon w-14   text-white rounded-full mr-3">
                             <span class="material-icons" style="color: #ff932f;
                             font-size: 58px;">
-                               cloud_upload
-                                </span>
+                                cloud_upload
+                            </span>
                         </div>
                         <div class="flex flex-col justify-center">
                             <div class="text-lg">{{convertToReadableSize($stats->avg_upload_bandwidth)}}</div>
-                            <div class="text-sm">Max {{convertToReadableSize($stats->max_upload_bandwidth)}} </div> 
+                            <div class="text-sm">Max {{convertToReadableSize($stats->max_upload_bandwidth)}} </div>
                             <div class="text-sm">Min {{convertToReadableSize($stats->max_upload_bandwidth)}}</div>
                             <div class="text-sm text-gray-400">Upload Speed</div>
                         </div>
@@ -52,12 +52,12 @@
                         <div class="icon w-14   text-white rounded-full mr-3">
                             <span class="material-icons" style="color: red;
                             font-size: 58px;">
-                               network_check
-                                </span>
+                                network_check
+                            </span>
                         </div>
                         <div class="flex flex-col justify-center">
                             <div class="text-lg">{{$stats->avg_ping_latency}} ms</div>
-                            <div class="text-sm">Max {{$stats->max_ping_latency}} ms</div> 
+                            <div class="text-sm">Max {{$stats->max_ping_latency}} ms</div>
                             <div class="text-sm">Min {{$stats->min_ping_latency}} ms</div>
                             <div class="text-sm text-gray-400">Latency</div>
                         </div>
@@ -71,12 +71,12 @@
                         <div class="icon w-14   text-white rounded-full mr-3">
                             <span class="material-icons" style="color: blue;
                             font-size: 58px;">
-                               cable
-                                </span>
+                                cable
+                            </span>
                         </div>
                         <div class="flex flex-col justify-center">
                             <div class="text-lg">{{$stats->avg_ping_jitter}} </div>
-                            <div class="text-sm">Max {{$stats->max_ping_jitter}} ms</div> 
+                            <div class="text-sm">Max {{$stats->max_ping_jitter}} ms</div>
                             <div class="text-sm">Min {{$stats->min_ping_jitter}} ms</div>
                             <div class="text-sm text-gray-400">Jitter</div>
                         </div>
@@ -90,75 +90,75 @@
             <div id="chart" width="400" height="400"></div>
         </div>
 
-      
+
 
         <div class="modal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
-          <!-- modal -->
-          <div class="bg-white rounded shadow-lg w-10/12 md:w-1/3">
-            <!-- modal header -->
-            <div class="border-b px-4 py-2 flex justify-between items-center">
-              <h3 class="font-semibold text-lg">Speed Test Details</h3>
-              <button class="text-black close-modal">&cross;</button>
-            </div>
-            <!-- modal body -->
-            <div class="p-3 m-10">
-              
+            <!-- modal -->
+            <div class="bg-white rounded shadow-lg w-10/12 md:w-1/3">
+                <!-- modal header -->
+                <div class="border-b px-4 py-2 flex justify-between items-center">
+                    <h3 class="font-semibold text-lg">Speed Test Details</h3>
+                    <button class="text-black close-modal">&cross;</button>
+                </div>
+                <!-- modal body -->
+                <div class="p-3 m-10">
+
                     <div style="border-top-color:transparent" class="border-solid animate-spin absolute right-1/2 bottom-1/2  rounded-full border-blue-400 border-8 h-8 w-8" id="modal-loader"></div>
-         
-                {{-- //content --}}
+
+                    {{-- //content --}}
                     <div class="container flex mx-auto w-full items-center justify-center hidden" id="modal-content">
- 
+
                         <ul class="flex flex-col bg-white-300 p-4 w-full">
-                             <li class="border-gray-400 flex flex-row mb-2 ">
-                               <div class="select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-                                 <div class="flex flex-col rounded-md w-10 h-10 bg-gray-300 justify-center items-center mr-4">💧</div>
-                                 <div class="flex-1 pl-1 mr-16">
-                                   <div class="font-medium">Download</div>
-                                   <div>BandWidth : <span class="text-gray-600 text-sm" id="download-bandwidth"> </span></div>
-                                  <div> Data : <span class="text-gray-600 text-sm" id="download-bytes"></span></div>
-                                   <div> Time : <span class="text-gray-600 text-sm" id="download-elapsed"></span></div>
-                                 </div>
-                                 <div class="text-gray-600 text-xs"></div>
-                               </div>
-                             </li>
-                                  <li class="border-gray-400 flex flex-row mb-2">
-                               <div class="select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-                                 <div class="flex flex-col rounded-md w-10 h-10 bg-gray-300 justify-center items-center mr-4">⚽️</div>
-                                 <div class="flex-1 pl-1 mr-16">
-                                   <div class="font-medium">Upload </div>
-                                   <div>BandWidth : <span class="text-gray-600 text-sm" id="upload-bandwidth"> </span></div>
-                                  <div> Data : <span class="text-gray-600 text-sm" id="upload-bytes"></span></div>
-                                   <div> Time : <span class="text-gray-600 text-sm" id="upload-elapsed"></span></div>
-                                 </div>
-                                 <div class="text-gray-600 text-xs"></div>
-                               </div>
-                             </li>
-                                  <li class="border-gray-400 flex flex-row mb-2">
-                               <div class="select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-                                 <div class="flex flex-col rounded-md w-10 h-10 bg-gray-300 justify-center items-center mr-4">📖</div>
-                                 <div class="flex-1 pl-1 mr-16">
-                                   <div class="font-medium">ISP</div>
-                                   <div class="font-medium" id="isp-name"></div>
-                                   <div>Jitter : <span class="text-gray-600 text-sm" id="ping-jitter"> </span></div>
-                                  <div> Latency : <span class="text-gray-600 text-sm" id="ping-latency"></span></div>
-                                  
-                                 </div>
-                                 <div class="text-gray-600 text-xs"></div>
-                               </div>
-                             </li>
-                         </ul>
-                         
-                       </div>
+                            <li class="border-gray-400 flex flex-row mb-2 ">
+                                <div class="select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                                    <div class="flex flex-col rounded-md w-10 h-10 bg-gray-300 justify-center items-center mr-4">💧</div>
+                                    <div class="flex-1 pl-1 mr-16">
+                                        <div class="font-medium">Download</div>
+                                        <div>BandWidth : <span class="text-gray-600 text-sm" id="download-bandwidth"> </span></div>
+                                        <div> Data : <span class="text-gray-600 text-sm" id="download-bytes"></span></div>
+                                        <div> Time : <span class="text-gray-600 text-sm" id="download-elapsed"></span></div>
+                                    </div>
+                                    <div class="text-gray-600 text-xs"></div>
+                                </div>
+                            </li>
+                            <li class="border-gray-400 flex flex-row mb-2">
+                                <div class="select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                                    <div class="flex flex-col rounded-md w-10 h-10 bg-gray-300 justify-center items-center mr-4">⚽️</div>
+                                    <div class="flex-1 pl-1 mr-16">
+                                        <div class="font-medium">Upload </div>
+                                        <div>BandWidth : <span class="text-gray-600 text-sm" id="upload-bandwidth"> </span></div>
+                                        <div> Data : <span class="text-gray-600 text-sm" id="upload-bytes"></span></div>
+                                        <div> Time : <span class="text-gray-600 text-sm" id="upload-elapsed"></span></div>
+                                    </div>
+                                    <div class="text-gray-600 text-xs"></div>
+                                </div>
+                            </li>
+                            <li class="border-gray-400 flex flex-row mb-2">
+                                <div class="select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                                    <div class="flex flex-col rounded-md w-10 h-10 bg-gray-300 justify-center items-center mr-4">📖</div>
+                                    <div class="flex-1 pl-1 mr-16">
+                                        <div class="font-medium">ISP</div>
+                                        <div class="font-medium" id="isp-name"></div>
+                                        <div>Jitter : <span class="text-gray-600 text-sm" id="ping-jitter"> </span></div>
+                                        <div> Latency : <span class="text-gray-600 text-sm" id="ping-latency"></span></div>
+
+                                    </div>
+                                    <div class="text-gray-600 text-xs"></div>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
 
 
+                </div>
+                <div class="flex justify-end items-center w-100 border-t p-3">
+                    <button class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1 close-modal">Cancel</button>
+                </div>
             </div>
-            <div class="flex justify-end items-center w-100 border-t p-3">
-              <button class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1 close-modal">Cancel</button>
-            </div>
-          </div>
         </div>
-  
-        
+
+
 
         <script>
             var latest_data = {
@@ -169,7 +169,8 @@
                 ping_jitter: [],
                 label: [],
             };
-            var ids =[];
+            var ids = [];
+
             function loadLatestSpeedtest() {
                 $.ajax({
                     url: "{{route('chart.latest')}}",
@@ -177,12 +178,12 @@
                 }).done(function(results) {
                     results.forEach(function(packet) {
                         latest_data.label.push(moment.utc(packet.timestamp).valueOf());
-                        latest_data.upload.push(parseFloat((packet.upload_bandwidth) / 125).toFixed(2));
-                        latest_data.download.push((parseFloat(packet.download_bandwidth) / 125).toFixed(2));
+                        latest_data.upload.push(parseFloat((packet.upload_bandwidth) / 125000).toFixed(2));
+                        latest_data.download.push((parseFloat(packet.download_bandwidth) / 125000).toFixed(2));
                         latest_data.isp.push(parseFloat(packet.isp));
                         latest_data.ping_latency.push(parseFloat(packet.ping_latency));
                         latest_data.ping_jitter.push(parseFloat(packet.ping_jitter));
-                        
+
                         ids.push(packet.id)
                     });
 
@@ -193,37 +194,37 @@
                             zoom: {
                                 autoScaleYaxis: true
                             },
-                            events:{
+                            events: {
                                 markerClick: function(event, chartContext, data) {
-       // open popup here
-       if(event.button==2){
-        const modal = document.querySelector('.modal');
+                                    // open popup here
+                                    if (event.button == 2) {
+                                        const modal = document.querySelector('.modal');
                                         modal.classList.remove('hidden')
                                         const id = ids[data.dataPointIndex]
                                         document.getElementById("modal-content").classList.add('hidden');
-                                            document.getElementById("modal-loader").classList.remove('hidden');
-                                        fetch(`/ajax/speedtest/${id}`).then(res=>{
+                                        document.getElementById("modal-loader").classList.remove('hidden');
+                                        fetch(`/ajax/speedtest/${id}`).then(res => {
                                             return res.json();
-                                        }).then(res=>{
+                                        }).then(res => {
                                             document.getElementById("modal-loader").classList.add('hidden');
                                             document.getElementById("modal-content").classList.remove('hidden');
                                             document.getElementById("download-bandwidth").innerHTML = res.download_bandwidth;
                                             document.getElementById("download-bytes").innerHTML = res.download_bytes;
-                                            document.getElementById("download-elapsed").innerHTML = res.download_elapsed; 
+                                            document.getElementById("download-elapsed").innerHTML = res.download_elapsed;
                                             document.getElementById("upload-bandwidth").innerHTML = res.upload_bandwidth;
                                             document.getElementById("upload-bytes").innerHTML = res.upload_bytes;
-                                            document.getElementById("upload-elapsed").innerHTML = res.upload_elapsed; 
-                                            document.getElementById("isp-name").innerHTML = res.isp; 
-                                            document.getElementById("ping-jitter").innerHTML = res.ping_jitter; 
-                                            document.getElementById("ping-latency").innerHTML = res.ping_latency; 
-                                            
-                                           
+                                            document.getElementById("upload-elapsed").innerHTML = res.upload_elapsed;
+                                            document.getElementById("isp-name").innerHTML = res.isp;
+                                            document.getElementById("ping-jitter").innerHTML = res.ping_jitter;
+                                            document.getElementById("ping-latency").innerHTML = res.ping_latency;
+
+
                                             console.log(res);
                                         })
                                         console.log(data);
-       }
-                                     
-                                     }
+                                    }
+
+                                }
                             },
                             stacked: false,
                             // background: '#fff'
@@ -258,7 +259,7 @@
                         },
                         tooltip: {
                             x: {
-                                format: 'dd MMM yyyy hh:mm'
+                                format: 'dd MMM yyyy H:mm'
                             }
                         },
                         yaxis: {
@@ -284,19 +285,19 @@
 
             loadLatestSpeedtest();
         </script>
-  <script>
-    const modal = document.querySelector('.modal');
+        <script>
+            const modal = document.querySelector('.modal');
 
-    const showModal = document.querySelector('.show-modal');
-    const closeModal = document.querySelectorAll('.close-modal');
+            const showModal = document.querySelector('.show-modal');
+            const closeModal = document.querySelectorAll('.close-modal');
 
-   
-    closeModal.forEach(close => {
-      close.addEventListener('click', function (){
-        modal.classList.add('hidden')
-      });
-    });
-  </script>
+
+            closeModal.forEach(close => {
+                close.addEventListener('click', function() {
+                    modal.classList.add('hidden')
+                });
+            });
+        </script>
 
     </div>
 
