@@ -196,7 +196,8 @@
                             events:{
                                 markerClick: function(event, chartContext, data) {
        // open popup here
-                                        const modal = document.querySelector('.modal');
+       if(event.button==2){
+        const modal = document.querySelector('.modal');
                                         modal.classList.remove('hidden')
                                         const id = ids[data.dataPointIndex]
                                         document.getElementById("modal-content").classList.add('hidden');
@@ -220,6 +221,8 @@
                                             console.log(res);
                                         })
                                         console.log(data);
+       }
+                                     
                                      }
                             },
                             stacked: false,
