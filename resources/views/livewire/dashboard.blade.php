@@ -38,6 +38,7 @@
                     var options = {
                         chart: {
                             type: 'line',
+                            height: '300px',
                             zoom: {
                                 autoScaleYaxis: true
                             },
@@ -64,7 +65,7 @@
                             enabled: false
                         },
                         stroke: {
-                            width: 2,
+                            width: 1,
                             curve: 'smooth'
                         },
                         xaxis: {
@@ -83,7 +84,8 @@
                             },
                         },
                         theme: {
-                            mode: 'dark',
+                            // mode: 'dark',
+                            palette: "palette2"
                         },
                         markers: {
                             size: 0
