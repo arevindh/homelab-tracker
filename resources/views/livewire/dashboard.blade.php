@@ -19,7 +19,8 @@
                         </div>
                         <div class="flex flex-col justify-center">
                             <div class="text-lg">{{convertToReadableSize($stats->avg_download_bandwidth)}}</div>
-                            <div class="text-sm">Max {{convertToReadableSize($stats->max_download_bandwidth)}} : Min {{convertToReadableSize($stats->min_download_bandwidth)}}</div>
+                            <div class="text-sm">Max {{convertToReadableSize($stats->max_download_bandwidth)}} </div>
+                            <div class="text-sm">Min {{convertToReadableSize($stats->min_download_bandwidth)}}</div>
                             <div class="text-sm text-gray-400">Download Speed</div>
                         </div>
                     </div>
@@ -37,6 +38,8 @@
                         </div>
                         <div class="flex flex-col justify-center">
                             <div class="text-lg">{{convertToReadableSize($stats->avg_upload_bandwidth)}}</div>
+                            <div class="text-sm">Max {{convertToReadableSize($stats->max_upload_bandwidth)}} </div> 
+                            <div class="text-sm">Min {{convertToReadableSize($stats->max_upload_bandwidth)}}</div>
                             <div class="text-sm text-gray-400">Upload Speed</div>
                         </div>
                     </div>
@@ -54,6 +57,8 @@
                         </div>
                         <div class="flex flex-col justify-center">
                             <div class="text-lg">{{$stats->avg_ping_latency}} ms</div>
+                            <div class="text-sm">Max {{$stats->max_ping_latency}} ms</div> 
+                            <div class="text-sm">Min {{$stats->min_ping_latency}} ms</div>
                             <div class="text-sm text-gray-400">Latency</div>
                         </div>
                     </div>
@@ -71,6 +76,8 @@
                         </div>
                         <div class="flex flex-col justify-center">
                             <div class="text-lg">{{$stats->avg_ping_jitter}} </div>
+                            <div class="text-sm">Max {{$stats->max_ping_jitter}} ms</div> 
+                            <div class="text-sm">Min {{$stats->min_ping_jitter}} ms</div>
                             <div class="text-sm text-gray-400">Jitter</div>
                         </div>
                     </div>
