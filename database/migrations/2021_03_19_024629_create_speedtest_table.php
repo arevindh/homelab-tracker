@@ -16,6 +16,7 @@ class CreateSpeedtestTable extends Migration
         Schema::create('speedtests', function (Blueprint $table) {
             $table->id();
             $table->string('status')->comment('inprogress, success, failed');
+            $table->string('type')->default('scheduled')->comment('scheduled/manual');
 
             $table->decimal('ping_jitter')->nullable();
             $table->decimal('ping_latency')->nullable();

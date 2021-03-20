@@ -18,6 +18,7 @@
                     <th class="text-left">Test Server</th>
                     <th class="text-left">Server Location</th>
                     <th class="text-left">Timestamp</th>
+                    <th class="text-right">Button</th>
                 </tr>
             </thead>
         </table>
@@ -35,13 +36,13 @@
                     "columns": [{
                             "data": "download_bandwidth",
                             "render": function(value) {
-                                return (parseInt(value) / 124000).toFixed(2) + ' Mbps';
+                                return (parseInt(value) / 125000).toFixed(2) + ' Mbps';
                             }
                         },
                         {
                             "data": "upload_bandwidth",
                             "render": function(value) {
-                                return (parseInt(value) / 124000).toFixed(2) + ' Mbps';
+                                return (parseInt(value) / 125000).toFixed(2) + ' Mbps';
                             }
                         },
                         {
@@ -61,6 +62,14 @@
                             "searchable": false,
                             "render": function(value) {
                                 return moment.utc(value).local().format('YYYY-MM-DD HH:mm:ss');
+                            }
+                        },
+                        {
+                            "data": "result_url",
+                            "searchable": false,
+                            "sortable": false,
+                            "render": function(value) {
+                                return '<a href="' + value + '">View</a>';
                             }
                         }
                     ]

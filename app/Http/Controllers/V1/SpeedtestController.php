@@ -11,6 +11,10 @@ class SpeedtestController extends Controller
 {
     public function speedtestDatable()
     {
-        return DataTables::eloquent(Speedtest::query())->make(true);
+        return DataTables::eloquent(Speedtest::query())
+            ->addColumn('button', function (Speedtest $user) {
+                return '<a href= ' . $user->result_url . '>View</a>';
+            })
+            ->make(true);
     }
 }

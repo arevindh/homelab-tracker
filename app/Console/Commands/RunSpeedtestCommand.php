@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Speedtest;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class RunSpeedtestCommand extends Command
 {
@@ -12,7 +13,7 @@ class RunSpeedtestCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'speedtest:run';
+    protected $signature = 'speedtest:run {type?}';
 
     /**
      * The console command description.
@@ -38,9 +39,15 @@ class RunSpeedtestCommand extends Command
      */
     public function handle()
     {
+
+        $userId = $this->argument('type');
+
         $this->info("Running new speedtest from commandline");
+        Log::info('Running new speedtest from commandline');
+        
         $speedtest = new Speedtest();
         $speedtest->status = "inprogress";
+        $speedtest->type = $userId ?? "manual";
         $speedtest->save();
         try {
             $output = exec(storage_path() . '/speedtest-cli/cli/speedtest -f json  --accept-license --accept-gdpr');
@@ -67,10 +74,12 @@ class RunSpeedtestCommand extends Command
             $speedtest->status = "success";
             $speedtest->save();
             $this->info("Speedtest successful");
+            Log::info('Speedtest successful');
         } catch (\Throwable $th) {
             $speedtest->status = "failed";
             $speedtest->save();
             $this->info("Speedtest failed");
+            Log::info('Speedtest failed');
             throw $th;
         }
     }
