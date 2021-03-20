@@ -9,7 +9,7 @@
         <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
 
             <div class="w-full lg:w-1/4">
-                <div class="widget w-full p-4 rounded-lg bg-white border-l-4 border-purple-400">
+                <div class="widget w-full p-4 rounded-lg bg-white border-l-4 border-green-400">
                     <div class="flex items-center">
                         <div class="icon w-14  rounded-full mr-3">
                             <span class="material-icons" style="color: #39B29D;
@@ -28,7 +28,7 @@
             </div>
 
             <div class="w-full lg:w-1/4">
-                <div class="widget w-full p-4 rounded-lg bg-white border-l-4 border-blue-400">
+                <div class="widget w-full p-4 rounded-lg bg-white border-l-4 border-yellow-400">
                     <div class="flex items-center">
                         <div class="icon w-14   text-white rounded-full mr-3">
                             <span class="material-icons" style="color: #ff932f;
@@ -47,7 +47,7 @@
             </div>
 
             <div class="w-full lg:w-1/4">
-                <div class="widget w-full p-4 rounded-lg bg-white border-l-4 border-yellow-400">
+                <div class="widget w-full p-4 rounded-lg bg-white border-l-4 border-red-400">
                     <div class="flex items-center">
                         <div class="icon w-14   text-white rounded-full mr-3">
                             <span class="material-icons" style="color: red;
@@ -66,10 +66,10 @@
             </div>
 
             <div class="w-full lg:w-1/4">
-                <div class="widget w-full p-4 rounded-lg bg-white border-l-4 border-red-400">
+                <div class="widget w-full p-4 rounded-lg bg-white border-l-4 border-blue-400">
                     <div class="flex items-center">
                         <div class="icon w-14   text-white rounded-full mr-3">
-                            <span class="material-icons" style="color: aqua;
+                            <span class="material-icons" style="color: blue;
                             font-size: 58px;">
                                cable
                                 </span>
