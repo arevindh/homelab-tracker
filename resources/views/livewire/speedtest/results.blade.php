@@ -1,12 +1,13 @@
-<div class="py-12 ">
+<div class="py-8">
     <!-- dark:bg-gray-800 -->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Speedtest History') }}
         </h2>
     </x-slot>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white p-4 ">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
+    <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
 
         <table id="speedtestresults" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
             <thead>
@@ -23,6 +24,7 @@
                 </tr>
             </thead>
         </table>
+    </div>
 
         <script>
             $(document).ready(function() {

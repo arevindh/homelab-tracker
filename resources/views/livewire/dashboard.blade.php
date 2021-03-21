@@ -1,11 +1,11 @@
-<div class="py-12 ">
+<div class="py-8">
     <!-- dark:bg-gray-800 -->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4" >
 
             <div class="w-full lg:w-1/4">
