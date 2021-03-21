@@ -26,7 +26,7 @@
 
         <script>
             $(document).ready(function() {
-                $('#speedtestresults').DataTable({
+                var results = $('#speedtestresults').DataTable({
                     "ajax": "/ajax/speedtest/history",
                     "processing": true,
                     "serverSide": true,
@@ -36,14 +36,20 @@
                     ],
                     "columns": [{
                             "data": "download_bandwidth",
-                            "render": function(value) {
-                                return (parseInt(value) / 125000).toFixed(2) + ' Mbps';
+                            "render": function(data, type, row, meta) {
+                                if (parseInt(data) == data) {
+                                    return (parseInt(data) / 125000).toFixed(2) + ' Mbps';
+                                }
+                                return row.status;
                             }
                         },
                         {
                             "data": "upload_bandwidth",
-                            "render": function(value) {
-                                return (parseInt(value) / 125000).toFixed(2) + ' Mbps';
+                            "render": function(data, type, row, meta) {
+                                if (parseInt(data) == data) {
+                                    return (parseInt(data) / 125000).toFixed(2) + ' Mbps';
+                                }
+                                return row.status;
                             }
                         },
                         {
@@ -53,7 +59,7 @@
                             "data": "ping_latency"
                         },
                         {
-                            "data": "server_name"
+                            "data": "server_name",
                         },
                         {
                             "data": "server_location"
@@ -69,7 +75,7 @@
                             }
                         },
                         {
-                            "data": "timestamp",
+                            "data": "created_at",
                             "searchable": false,
                             "render": function(value) {
                                 return moment.utc(value).local().format('YYYY-MM-DD HH:mm:ss');
@@ -85,6 +91,10 @@
                         }
                     ]
                 });
+                // reload every 15 seconds
+                setInterval(function() {
+                    results.ajax.reload();
+                }, 15000);
             });
         </script>
     </div>

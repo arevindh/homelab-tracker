@@ -6,7 +6,7 @@
         </h2>
     </x-slot>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
-        <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4" >
+        <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
 
             <div class="w-full lg:w-1/4">
                 <div class="widget w-full p-4 rounded-lg bg-white border-l-4 border-green-400">
@@ -181,13 +181,12 @@
                     dataType: "json"
                 }).done(function(results) {
                     results.forEach(function(packet) {
-                        latest_data.label.push(moment.utc(packet.timestamp).valueOf());
+                        latest_data.label.push(moment.utc(packet.created_at).valueOf());
                         latest_data.upload.push(parseFloat((packet.upload_bandwidth) / 125000).toFixed(2));
                         latest_data.download.push((parseFloat(packet.download_bandwidth) / 125000).toFixed(2));
-                        latest_data.isp.push(parseFloat(packet.isp));
+                        latest_data.isp.push(packet.isp);
                         latest_data.ping_latency.push(parseFloat(packet.ping_latency));
                         latest_data.ping_jitter.push(parseFloat(packet.ping_jitter));
-
                         ids.push(packet.id)
                     });
 
@@ -231,7 +230,10 @@
                                 }
                             },
                             stacked: false,
-                            // background: '#fff'
+                            // background: '#fff',
+                            animations: {
+                                enabled: false,
+                            },
                         },
                         series: [{
                                 name: 'Download',
@@ -289,11 +291,19 @@
                     chart.render()
 
 
+                    setInterval(function() {
+                        chart.update();
+                        //to-do reload data before-graph
+                        console.log('Reload Live Graph');
+                    }, 5000);
+
                 });
             }
 
             loadLatestSpeedtest();
         </script>
+
+
         <script>
             const modal = document.querySelector('.modal');
 
