@@ -6,7 +6,7 @@
         </h2>
     </x-slot>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
-        <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
+        <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4" >
 
             <div class="w-full lg:w-1/4">
                 <div class="widget w-full p-4 rounded-lg bg-white border-l-4 border-green-400">
@@ -38,7 +38,7 @@
                             </span>
                         </div>
                         <div class="flex flex-col justify-center">
-                            <div class="text-lg font-black">{{$latest->upload_bandwidth}} ms</div>
+                            <div class="text-lg font-black">{{convertToReadableSize($latest->upload_bandwidth)}} ms</div>
                             <div class="text-xs">Max {{convertToReadableSize($stats->max_upload_bandwidth)}} </div>
                             <div class="text-xs">Min {{convertToReadableSize($stats->min_upload_bandwidth)}}</div>
                             <div class="text-xs">Avg: {{convertToReadableSize($stats->avg_upload_bandwidth)}}</div>
@@ -96,7 +96,7 @@
 
 
 
-        <div class="modal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
+        <div class="modal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden ">
             <!-- modal -->
             <div class="bg-white rounded shadow-lg w-10/12 md:w-1/3">
                 <!-- modal header -->

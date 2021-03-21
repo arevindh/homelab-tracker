@@ -17,6 +17,7 @@
                     <th class="text-left">Latency</th>
                     <th class="text-left">Test Server</th>
                     <th class="text-left">Server Location</th>
+                    <th class="text-left">Type</th>
                     <th class="text-left">Timestamp</th>
                     <th class="text-right">Button</th>
                 </tr>
@@ -31,7 +32,7 @@
                     "serverSide": true,
                     "searching": false,
                     "order": [
-                        [6, 'desc']
+                        [7, 'desc']
                     ],
                     "columns": [{
                             "data": "download_bandwidth",
@@ -58,6 +59,16 @@
                             "data": "server_location"
                         },
                         {
+                            "data": "type",
+                            "render": function(value) {
+                                if (value === "scheduled") {
+                                    return "Scheduled";
+                                } else {
+                                    return "Manual";
+                                }
+                            }
+                        },
+                        {
                             "data": "timestamp",
                             "searchable": false,
                             "render": function(value) {
@@ -69,7 +80,7 @@
                             "searchable": false,
                             "sortable": false,
                             "render": function(value) {
-                                return '<a href="' + value + '">View</a>';
+                                return '<a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded" href="' + value + '">View</a>';
                             }
                         }
                     ]
