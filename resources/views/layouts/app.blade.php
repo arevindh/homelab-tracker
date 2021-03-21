@@ -24,8 +24,7 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <link href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-    <script src="//cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.1/dist/alpine.min.js" defer></script>
-   
+
     <style>
         /*Overrides for Tailwind CSS */
 
@@ -140,6 +139,30 @@
         <main>
             {{ $slot }}
         </main>
+    </div>
+
+
+    <div class="bg-gray-100 pt-2  ">
+        <div class="flex pb-8 px-3 m-auto pt-5 border-t text-gray-800 text-sm flex-col md:flex-row max-w-7xl">
+            <div class="mt-2"> <a href="https://github.com/arevindh/homelab-tracker" target="_blank">HomelabTracker</a> </div>
+            <div class="md:flex-auto md:flex-row-reverse mt-2 flex-row flex">
+                <a href="/#" class="w-6 mx-1">
+                    x
+                </a>
+                <a href="/#" class="w-6 mx-1">
+                   y
+                </a>
+                <a href="/#" class="w-6 mx-1">
+                    z
+                </a>
+                <a href="/#" class="w-6 mx-1">
+                   a
+                </a>
+                <a href="/#" class="w-6 mx-1">
+                   b
+                </a>
+            </div>
+        </div>
     </div>
 
     @stack('modals')

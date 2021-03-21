@@ -19,7 +19,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-2 sm:flex">
                     <x-jet-nav-link href="{{ route('speedtest.results') }}" :active="request()->routeIs('speedtest.results')">
-                        {{ __('Speedtest Results') }}
+                        {{ __('Speedtest') }}
                     </x-jet-nav-link>
                 </div>
 
