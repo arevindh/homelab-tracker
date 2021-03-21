@@ -38,7 +38,7 @@
                             </span>
                         </div>
                         <div class="flex flex-col justify-center">
-                            <div class="text-lg font-black">{{convertToReadableSize($latest->upload_bandwidth)}} ms</div>
+                            <div class="text-lg font-black">{{convertToReadableSize($latest->upload_bandwidth)}}</div>
                             <div class="text-xs">Max {{convertToReadableSize($stats->max_upload_bandwidth)}} </div>
                             <div class="text-xs">Min {{convertToReadableSize($stats->min_upload_bandwidth)}}</div>
                             <div class="text-xs">Avg: {{convertToReadableSize($stats->avg_upload_bandwidth)}}</div>

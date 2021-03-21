@@ -5,7 +5,7 @@
             {{ __('Speedtest History') }}
         </h2>
     </x-slot>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white p-4">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white p-4 ">
 
 
         <table id="speedtestresults" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
