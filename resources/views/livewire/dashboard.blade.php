@@ -18,9 +18,10 @@
                             </span>
                         </div>
                         <div class="flex flex-col justify-center">
-                            <div class="text-lg">{{convertToReadableSize($stats->avg_download_bandwidth)}}</div>
-                            <div class="text-sm">Max {{convertToReadableSize($stats->max_download_bandwidth)}} </div>
-                            <div class="text-sm">Min {{convertToReadableSize($stats->min_download_bandwidth)}}</div>
+                            <div class="text-lg font-black">{{convertToReadableSize($latest->download_bandwidth)}}</div>
+                            <div class="text-xs">Max : {{convertToReadableSize($stats->max_download_bandwidth)}} </div>
+                            <div class="text-xs">Min : {{convertToReadableSize($stats->min_download_bandwidth)}}</div>
+                            <div class="text-xs">Avg : {{convertToReadableSize($stats->avg_download_bandwidth)}}</div>
                             <div class="text-sm text-gray-400">Download Speed</div>
                         </div>
                     </div>
@@ -37,9 +38,10 @@
                             </span>
                         </div>
                         <div class="flex flex-col justify-center">
-                            <div class="text-lg">{{convertToReadableSize($stats->avg_upload_bandwidth)}}</div>
-                            <div class="text-sm">Max {{convertToReadableSize($stats->max_upload_bandwidth)}} </div>
-                            <div class="text-sm">Min {{convertToReadableSize($stats->max_upload_bandwidth)}}</div>
+                            <div class="text-lg font-black">{{$latest->upload_bandwidth}} ms</div>
+                            <div class="text-xs">Max {{convertToReadableSize($stats->max_upload_bandwidth)}} </div>
+                            <div class="text-xs">Min {{convertToReadableSize($stats->min_upload_bandwidth)}}</div>
+                            <div class="text-xs">Avg: {{convertToReadableSize($stats->avg_upload_bandwidth)}}</div>
                             <div class="text-sm text-gray-400">Upload Speed</div>
                         </div>
                     </div>
@@ -56,9 +58,10 @@
                             </span>
                         </div>
                         <div class="flex flex-col justify-center">
-                            <div class="text-lg">{{$stats->avg_ping_latency}} ms</div>
-                            <div class="text-sm">Max {{$stats->max_ping_latency}} ms</div>
-                            <div class="text-sm">Min {{$stats->min_ping_latency}} ms</div>
+                            <div class="text-lg font-black">{{$latest->ping_latency}} ms</div>
+                            <div class="text-xs">Max : {{$stats->max_ping_latency}} ms</div>
+                            <div class="text-xs">Min : {{$stats->min_ping_latency}} ms</div>
+                            <div class="text-xs">Avg : {{$stats->avg_ping_latency}} ms</div>
                             <div class="text-sm text-gray-400">Latency</div>
                         </div>
                     </div>
@@ -75,9 +78,10 @@
                             </span>
                         </div>
                         <div class="flex flex-col justify-center">
-                            <div class="text-lg">{{$stats->avg_ping_jitter}} </div>
-                            <div class="text-sm">Max {{$stats->max_ping_jitter}} ms</div>
-                            <div class="text-sm">Min {{$stats->min_ping_jitter}} ms</div>
+                            <div class="text-lg font-black">{{convertToReadableSize($latest->ping_jitter)}}</div>
+                            <div class="text-sm">Max : {{$stats->max_ping_jitter}} ms</div>
+                            <div class="text-xs">Min : {{$stats->min_ping_jitter}} ms</div>
+                            <div class="text-xs">Avg : {{$stats->avg_ping_jitter}} </div>
                             <div class="text-sm text-gray-400">Jitter</div>
                         </div>
                     </div>
@@ -256,11 +260,16 @@
                             type: 'datetime',
                             categories: latest_data.label,
                             tickAmount: 6,
+                            labels: {
+
+                                datetimeUTC: false,
+
+                            }
                         },
                         tooltip: {
                             x: {
                                 format: 'dd MMM yyyy H:mm'
-                            }
+                            },
                         },
                         yaxis: {
                             title: {
