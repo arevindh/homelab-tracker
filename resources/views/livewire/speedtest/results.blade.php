@@ -75,7 +75,7 @@
                             }
                         },
                         {
-                            "data": "created_at",
+                            "data": "timestamp",
                             "searchable": false,
                             "render": function(value) {
                                 return moment.utc(value).local().format('YYYY-MM-DD HH:mm:ss');
