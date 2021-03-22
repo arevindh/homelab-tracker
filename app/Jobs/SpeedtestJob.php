@@ -8,6 +8,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
 
 class SpeedtestJob implements ShouldQueue
 {
@@ -30,6 +32,8 @@ class SpeedtestJob implements ShouldQueue
      */
     public function handle()
     {
-        //
+        Log::info("Queue speedtest:run started");
+        Artisan::call('speedtest:run');
+        Log::info("Queue speedtest:run finished");
     }
 }

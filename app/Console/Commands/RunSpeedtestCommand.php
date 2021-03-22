@@ -2,8 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Settings;
 use App\Models\Speedtest;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Arr;
 
 class RunSpeedtestCommand extends Command
 {
@@ -12,7 +15,7 @@ class RunSpeedtestCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'speedtest:run';
+    protected $signature = 'speedtest:run {type?}';
 
     /**
      * The console command description.
@@ -38,11 +41,35 @@ class RunSpeedtestCommand extends Command
      */
     public function handle()
     {
+
+        $userId = $this->argument('type');
+
+        $this->info("Running new speedtest from commandline");
+        Log::info('Running new speedtest from commandline');
+
         $speedtest = new Speedtest();
         $speedtest->status = "inprogress";
+        $speedtest->type = $userId ?? "manual";
         $speedtest->save();
+
+        $servers = Settings::getValue('server');
+
+        if (!empty($servers)) {
+            $serverslist = array_filter(explode(',', $servers));
+            $serverslist = array_unique($serverslist);
+            $serverslist = array_values($serverslist);
+            $selected_server = Arr::random($serverslist);
+        }
+
         try {
-            $output = exec(storage_path() . '/speedtest-cli/cli/speedtest -f json  --accept-license --accept-gdpr');
+
+            if (!empty($selected_server)) {
+                Log::info('Testing with custom server ' . $selected_server);
+                $output = exec(storage_path() . "/speedtest-cli/cli/speedtest -f json  --accept-license --accept-gdpr --server-id=$selected_server");
+            } else {
+                Log::info('Testing with random server ' . $selected_server);
+                $output = exec(storage_path() . '/speedtest-cli/cli/speedtest -f json  --accept-license --accept-gdpr');
+            }
 
             $decoded_op = json_decode($output);
 
@@ -65,9 +92,13 @@ class RunSpeedtestCommand extends Command
             $speedtest->timestamp = $decoded_op->timestamp;
             $speedtest->status = "success";
             $speedtest->save();
+            $this->info("Speedtest successful");
+            Log::info('Speedtest successful');
         } catch (\Throwable $th) {
             $speedtest->status = "failed";
             $speedtest->save();
+            $this->info("Speedtest failed");
+            Log::info('Speedtest failed');
             throw $th;
         }
     }
