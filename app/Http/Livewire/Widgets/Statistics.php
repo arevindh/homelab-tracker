@@ -31,9 +31,18 @@ class Statistics extends Component
         // Check if any results are pending in last 2 mins
         if (!Speedtest::where('status', 'inprogress')->where('created_at', '>=', Carbon::now()->subMinutes(2))->count()) {
             // Start job
+
+            $this->dispatchBrowserEvent(
+                'alert',
+                ['type' => 'success',  'message' => 'Speedtest initialed']
+            );
+
             SpeedtestJob::dispatch();
         } else {
-            $this->dispatchBrowserEvent('A speedtest is already pending');
+            $this->dispatchBrowserEvent(
+                'alert',
+                ['type' => 'warning',  'message' => 'A speedtest is already pending']
+            );
         }
     }
 }
