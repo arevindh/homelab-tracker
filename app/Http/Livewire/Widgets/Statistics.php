@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Widgets;
 
+use App\Jobs\SpeedtestJob;
 use App\Models\Speedtest;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -22,5 +23,11 @@ class Statistics extends Component
 
 
         return view('livewire.widgets.statistics', ['stats' => $stats, 'latest' => $latest]);
+    }
+
+    public function testSpeed()
+    {
+        SpeedtestJob::dispatch();
+        // $this->dispatchBrowserEvent('reloadGraph');
     }
 }

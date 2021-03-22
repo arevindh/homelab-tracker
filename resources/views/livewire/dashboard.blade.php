@@ -14,10 +14,7 @@
             <div id="chart" width="400" height="400"></div>
         </div>
 
-        <button wire:click="$emit('runSpeedtest')">
-            Test Speed
-        </button>
-
+  
 
 
         <div class="modal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden ">

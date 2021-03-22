@@ -13,8 +13,6 @@ class Dashboard extends Component
     public $latest;
     public $stats;
 
-    protected $listeners = ['runSpeedtest' => 'testSpeed'];
-
     public function mount()
     {
         
@@ -35,9 +33,4 @@ class Dashboard extends Component
         return view('livewire.dashboard');
     }
 
-    public function testSpeed()
-    {
-        SpeedtestJob::dispatch();
-        $this->dispatchBrowserEvent('reloadGraph');
-    }
 }

@@ -78,4 +78,9 @@
             </div>
         </div>
     </div>
+
+    <button wire:click="testSpeed" class="rounded-lg bg-white border-l-4 border-pink-400">
+       Run Test
+    </button>
+
 </div>
