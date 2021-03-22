@@ -52,7 +52,7 @@ class RunSpeedtestCommand extends Command
         $speedtest->type = $userId ?? "manual";
         $speedtest->save();
 
-        $servers = Settings::getValue('server');
+        $servers = Settings::getValue('speedtest', 'server');
 
         if (!empty($servers)) {
             $serverslist = array_filter(explode(',', $servers));
@@ -67,7 +67,7 @@ class RunSpeedtestCommand extends Command
                 Log::info('Testing with custom server ' . $selected_server);
                 $output = exec(storage_path() . "/speedtest-cli/cli/speedtest -f json  --accept-license --accept-gdpr --server-id=$selected_server");
             } else {
-                Log::info('Testing with random server ' . $selected_server);
+                Log::info('Testing with random server ');
                 $output = exec(storage_path() . '/speedtest-cli/cli/speedtest -f json  --accept-license --accept-gdpr');
             }
 

@@ -18,6 +18,8 @@ class CreateSpeedtestTable extends Migration
             $table->string('status')->comment('inprogress, success, failed');
             $table->string('type')->default('scheduled')->comment('scheduled/manual');
 
+            $table->unsignedBigInteger('queue_id')->nullable();
+
             $table->decimal('ping_jitter')->nullable();
             $table->decimal('ping_latency')->nullable();
 
