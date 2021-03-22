@@ -34,12 +34,8 @@ class SpeedtestJob implements ShouldQueue
     public function handle()
     {
         // Check if any results are pending in last 2 mins
-        if (!Speedtest::where('status', 'inprogress')->count()) {
-            Log::info("A test is already running, igoring queue");
-        } else {
-            Log::info("Queue speedtest:run started");
-            Artisan::call('speedtest:run');
-            Log::info("Queue speedtest:run finished");
-        }
+        Log::info("Queue speedtest:run started");
+        Artisan::call('speedtest:run');
+        Log::info("Queue speedtest:run finished");
     }
 }
