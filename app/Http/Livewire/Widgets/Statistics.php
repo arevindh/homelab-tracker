@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Widgets;
 
 use App\Jobs\SpeedtestJob;
 use App\Models\Speedtest;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -27,7 +28,12 @@ class Statistics extends Component
 
     public function testSpeed()
     {
-        SpeedtestJob::dispatch();
-        // $this->dispatchBrowserEvent('reloadGraph');
+        // Check if any results are pending in last 2 mins
+        if (!Speedtest::where('status', 'inprogress')->where('created_at', '>=', Carbon::now()->subMinutes(2))->count()) {
+            // Start job
+            SpeedtestJob::dispatch();
+        } else {
+            $this->dispatchBrowserEvent('A speedtest is already pending');
+        }
     }
 }
