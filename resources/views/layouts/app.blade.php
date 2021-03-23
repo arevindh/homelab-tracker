@@ -325,7 +325,7 @@
         </main>
 
         <div class="bg-gray-100 pt-2" id="footer">
-            <div class="flex pb-8 px-3 m-auto pt-5 border-t text-gray-800 text-sm flex-col md:flex-row max-w-7xl">
+            <div class="flex pb-8 px-4 m-auto pt-5 border-t text-gray-800 text-sm flex-col md:flex-row max-w-7xl">
                 <div class="mt-2"> <a href="https://github.com/arevindh/homelab-tracker" target="_blank">HomelabTracker</a> </div>
                 <div class="md:flex-auto md:flex-row-reverse mt-2 flex-row flex">
                     <a href="/#" class="w-6 mx-1">
