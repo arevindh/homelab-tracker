@@ -1,4 +1,4 @@
-<div class="py-6">
+<div class="py-8">
     <!-- dark:bg-gray-800 -->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -13,10 +13,6 @@
             <!-- dark:bg-gray-800 -->
             <div id="chart" width="400" height="400"></div>
         </div>
-
-  
-
-
         <div class="modal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden ">
             <!-- modal -->
             <div class="bg-white rounded shadow-lg w-10/12 md:w-1/3">
@@ -82,9 +78,6 @@
                 </div>
             </div>
         </div>
-
-
-
         <script>
             var latest_data = {
                 upload: [],
@@ -222,17 +215,13 @@
 
             const showModal = document.querySelector('.show-modal');
             const closeModal = document.querySelectorAll('.close-modal');
-
-
+            
             closeModal.forEach(close => {
                 close.addEventListener('click', function() {
                     modal.classList.add('hidden')
                 });
             });
         </script>
-
-
-
 
     </div>
 
