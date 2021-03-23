@@ -34,14 +34,14 @@ class Statistics extends Component
 
             $this->dispatchBrowserEvent(
                 'alert',
-                ['type' => 'success',  'message' => 'Speedtest initialed']
+                ['type' => 'success',  'message' => 'Speedtest initiated.']
             );
 
             SpeedtestJob::dispatch();
         } else {
             $this->dispatchBrowserEvent(
                 'alert',
-                ['type' => 'warning',  'message' => 'A speedtest is already pending']
+                ['type' => 'warning',  'message' => 'A speedtest is already pending.']
             );
         }
     }
