@@ -19,4 +19,22 @@ class Settings extends Model
         }
         return '';
     }
+
+    public function getConfig(String $type, String $name)
+    {
+        return Settings::where('type', $type)->where('name', $name)->first();
+    }
+
+    public function setConfig(String $type, String $name, String $value = '')
+    {
+        $flight = Settings::firstOrNew([
+            'type' => $type,
+            'name' => $name
+        ]);
+
+        $flight->value = $value;
+        $flight->save();
+
+        return $flight;
+    }
 }
