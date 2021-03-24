@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Settings;
 use App\Models\Speedtest;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Arr;
@@ -44,6 +45,12 @@ class RunSpeedtestCommand extends Command
 
         $userId = $this->argument('type');
 
+        if (Speedtest::where('status', 'inprogress')->where('created_at', '>=', Carbon::now()->subMinutes(2))->count()) {
+            Log::info('A speedtest is already running or ran in last 2 min, skipping new one');
+            $this->info('A speedtest is already running or ran in last 2 min, skipping new one');
+            return true;
+        }
+
         $this->info("Running new speedtest from commandline");
         Log::info('Running new speedtest from commandline');
 
@@ -52,7 +59,7 @@ class RunSpeedtestCommand extends Command
         $speedtest->type = $userId ?? "manual";
         $speedtest->save();
 
-        $servers = Settings::getValue('server');
+        $servers = Settings::getValue('speedtest', 'server');
 
         if (!empty($servers)) {
             $serverslist = array_filter(explode(',', $servers));
@@ -67,7 +74,7 @@ class RunSpeedtestCommand extends Command
                 Log::info('Testing with custom server ' . $selected_server);
                 $output = exec(storage_path() . "/speedtest-cli/cli/speedtest -f json  --accept-license --accept-gdpr --server-id=$selected_server");
             } else {
-                Log::info('Testing with random server ' . $selected_server);
+                Log::info('Testing with random server ');
                 $output = exec(storage_path() . '/speedtest-cli/cli/speedtest -f json  --accept-license --accept-gdpr');
             }
 

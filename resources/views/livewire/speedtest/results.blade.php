@@ -1,4 +1,4 @@
-<div class="py-8">
+<div class="py-6">
     <!-- dark:bg-gray-800 -->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -34,12 +34,12 @@
                     "serverSide": true,
                     "searching": false,
                     "order": [
-                        [7, 'desc']
+                        [9, 'desc']
                     ],
                     "columns": [{
                             "data": "download_bandwidth",
                             "render": function(data, type, row, meta) {
-                                if (parseInt(data) == data) {
+                                if (data !=null) {
                                     return (parseInt(data) / 125000).toFixed(2) + ' Mbps';
                                 }
                                 return row.status;
@@ -48,7 +48,7 @@
                         {
                             "data": "upload_bandwidth",
                             "render": function(data, type, row, meta) {
-                                if (parseInt(data) == data) {
+                                if (data !=null) {
                                     return (parseInt(data) / 125000).toFixed(2) + ' Mbps';
                                 }
                                 return row.status;
@@ -90,7 +90,11 @@
                             "render": function(value) {
                                 return '<a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded" href="' + value + '">View</a>';
                             }
-                        }
+                        },
+                        {
+                            "data": "created_at",
+                            "visible": false
+                        },
                     ]
                 });
                 // reload every 15 seconds

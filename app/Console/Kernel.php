@@ -29,8 +29,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
 
-        if (Settings::getValue('schedule_enabled') == "yes") {
-            $schedule->command('speedtest:run scheduled')->cron(Settings::getValue('schedule'));
+        if (Settings::getValue('speedtest', 'schedule_enabled') == "yes") {
+            $schedule->command('speedtest:run scheduled')->cron(Settings::getValue('speedtest', 'schedule'));
         }
     }
 

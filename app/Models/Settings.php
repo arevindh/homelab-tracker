@@ -11,9 +11,9 @@ class Settings extends Model
     public $fillable = ['name', 'title', 'desc'];
 
 
-    public static function getValue(String $name = null)
+    public static function getValue(String $type, String $name)
     {
-        $opt = Settings::where('name', $name)->first();
+        $opt = Settings::where('type', $type)->where('name', $name)->first();
         if ($opt) {
             return $opt->value ?? '';
         }

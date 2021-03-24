@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddScheduleServerSettings extends Migration
+class AddMoreNotificationSettings extends Migration
 {
     /**
      * Run the migrations.
@@ -18,29 +18,29 @@ class AddScheduleServerSettings extends Migration
         Settings::insert(
             [
                 [
-                    'name' => 'schedule',
-                    'type' => 'speedtest',
-                    'value' => '0 * * * *',
-                    'title' => 'Schedule',
-                    'desc' => 'Enter crontab',
+                    'name' => 'enable_notification',
+                    'type' => 'notification',
+                    'value' => 'no',
+                    'title' => 'Enable Notifications',
+                    'desc' => 'Enable Notifications',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ],
                 [
-                    'name' => 'server',
-                    'type' => 'speedtest',
+                    'name' => 'notification_provider',
+                    'type' => 'notification',
                     'value' => '',
-                    'title' => 'Speedtest.net Server',
-                    'desc' => 'Select Speedtest.net server',
+                    'title' => 'Notification Provider',
+                    'desc' => 'Notification Provider Name',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ],
                 [
-                    'name' => 'schedule_enabled',
-                    'type' => 'speedtest',
-                    'value' => 'yes',
-                    'title' => 'Enable Speedtest',
-                    'desc' => 'Enable Speedtest',
+                    'name' => 'notification_provider_settings',
+                    'type' => 'notification',
+                    'value' => '',
+                    'title' => 'Notification Settings',
+                    'desc' => 'Notification Provider Settings',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ]
@@ -55,6 +55,6 @@ class AddScheduleServerSettings extends Migration
      */
     public function down()
     {
-        Settings::whereIn('name', ['schedule', 'server', 'schedule_enabled'])->where('type','speedetest')->delete();
+        Settings::whereIn('name', ['enable_notification', 'notification_provider_settings'])->where('type', 'notification')->delete();
     }
 }

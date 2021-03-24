@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Speedtest;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -32,6 +33,7 @@ class SpeedtestJob implements ShouldQueue
      */
     public function handle()
     {
+        // Check if any results are pending in last 2 mins
         Log::info("Queue speedtest:run started");
         Artisan::call('speedtest:run');
         Log::info("Queue speedtest:run finished");

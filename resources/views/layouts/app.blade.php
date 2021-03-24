@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     @livewireStyles
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
@@ -115,8 +119,188 @@
             background-color: #667eea !important;
             /*bg-indigo-500*/
         }
-    </style>
 
+        /*Toast open/load animation*/
+        .alert-toast {
+            -webkit-animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+
+        /*Toast close animation*/
+        .alert-toast input:checked~* {
+            -webkit-animation: fade-out-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            animation: fade-out-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+
+        @-webkit-keyframes slide-in-top {
+            0% {
+                -webkit-transform: translateY(-1000px);
+                transform: translateY(-1000px);
+                opacity: 0
+            }
+
+            100% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                opacity: 1
+            }
+        }
+
+        @keyframes slide-in-top {
+            0% {
+                -webkit-transform: translateY(-1000px);
+                transform: translateY(-1000px);
+                opacity: 0
+            }
+
+            100% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                opacity: 1
+            }
+        }
+
+        @-webkit-keyframes slide-out-top {
+            0% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                opacity: 1
+            }
+
+            100% {
+                -webkit-transform: translateY(-1000px);
+                transform: translateY(-1000px);
+                opacity: 0
+            }
+        }
+
+        @keyframes slide-out-top {
+            0% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                opacity: 1
+            }
+
+            100% {
+                -webkit-transform: translateY(-1000px);
+                transform: translateY(-1000px);
+                opacity: 0
+            }
+        }
+
+        @-webkit-keyframes slide-in-bottom {
+            0% {
+                -webkit-transform: translateY(1000px);
+                transform: translateY(1000px);
+                opacity: 0
+            }
+
+            100% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                opacity: 1
+            }
+        }
+
+        @keyframes slide-in-bottom {
+            0% {
+                -webkit-transform: translateY(1000px);
+                transform: translateY(1000px);
+                opacity: 0
+            }
+
+            100% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                opacity: 1
+            }
+        }
+
+        @-webkit-keyframes slide-out-bottom {
+            0% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                opacity: 1
+            }
+
+            100% {
+                -webkit-transform: translateY(1000px);
+                transform: translateY(1000px);
+                opacity: 0
+            }
+        }
+
+        @keyframes slide-out-bottom {
+            0% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                opacity: 1
+            }
+
+            100% {
+                -webkit-transform: translateY(1000px);
+                transform: translateY(1000px);
+                opacity: 0
+            }
+        }
+
+        @-webkit-keyframes slide-in-right {
+            0% {
+                -webkit-transform: translateX(1000px);
+                transform: translateX(1000px);
+                opacity: 0
+            }
+
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                opacity: 1
+            }
+        }
+
+        @keyframes slide-in-right {
+            0% {
+                -webkit-transform: translateX(1000px);
+                transform: translateX(1000px);
+                opacity: 0
+            }
+
+            100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                opacity: 1
+            }
+        }
+
+        @-webkit-keyframes fade-out-right {
+            0% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                opacity: 1
+            }
+
+            100% {
+                -webkit-transform: translateX(50px);
+                transform: translateX(50px);
+                opacity: 0
+            }
+        }
+
+        @keyframes fade-out-right {
+            0% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                opacity: 1
+            }
+
+            100% {
+                -webkit-transform: translateX(50px);
+                transform: translateX(50px);
+                opacity: 0
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 
 <body class="font-sans antialiased">
@@ -141,7 +325,7 @@
         </main>
 
         <div class="bg-gray-100 pt-2" id="footer">
-            <div class="flex pb-8 px-3 m-auto pt-5 border-t text-gray-800 text-sm flex-col md:flex-row max-w-7xl">
+            <div class="flex pb-8 px-6 m-auto pt-5 border-t text-gray-800 text-sm flex-col md:flex-row max-w-7xl">
                 <div class="mt-2"> <a href="https://github.com/arevindh/homelab-tracker" target="_blank">HomelabTracker</a> </div>
                 <div class="md:flex-auto md:flex-row-reverse mt-2 flex-row flex">
                     <a href="/#" class="w-6 mx-1">
@@ -165,7 +349,19 @@
     </div>
     @stack('modals')
 
+
     @livewireScripts
+
+    <script>
+        window.addEventListener('alert', event => {
+            toastr[event.detail.type](event.detail.message,
+                event.detail.title ?? '');
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+            }
+        })
+    </script>
 </body>
 
 </html>
