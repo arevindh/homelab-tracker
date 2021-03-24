@@ -79,8 +79,14 @@
         </div>
     </div>
 
-    <button wire:click="testSpeed" class="rounded-lg bg-white border-l-4 focus:outline-none border-pink-400 active:bg-green-700">
-       Run Test
-    </button>
 
+
+</div>
+<div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4  justify-center grid grid-cols-2 gap-4">
+    <button wire:click="testSpeed" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded  w-100">
+        Run Test
+     </button>
+     <button wire:click="testSpeed" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  w-100">
+        something
+     </button>
 </div>
