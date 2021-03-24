@@ -1,3 +1,15 @@
+<style>
+    .toggle-checkbox:checked {
+  @apply: right-0 border-green-400;
+  right: 0;
+  border-color: #68D391;
+}
+.toggle-checkbox:checked + .toggle-label {
+  @apply: bg-green-400;
+  background-color: #68D391;
+}
+</style>
+
 <div class="mt-10 sm:mt-0">
     <div class="mt-5 md:mt-0 md:col-span-5">
         <form action="#" method="POST">
@@ -9,8 +21,13 @@
                             <input type="text" name="app_name" id="app_name" autocomplete="app_name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                         <div class="col-span-6 sm:col-span-6">
-                            <label for="schedule_enable" class="block text-sm font-medium text-gray-700">Enable Schedule (Enable or Diasble the schedule worker)</label>
-                            <input type="checkbox" name="schedule_enable" id="schedule_enable" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                         
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="schedule_enable" id="schedule_enable" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                        <label for="toggle" class="text-gray-700 text-sm font-medium ">Enable Schedule (Enable or Diasble the schedule worker)</label>
+                          
                         </div>
 
                         <div class="col-span-6 sm:col-span-6">
@@ -23,18 +40,38 @@
                             <input type="text" name="server" id="server" autocomplete="server" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
 
-                        <div class="col-span-12 sm:col-span-6">
-                            <label for="schedule_enable" class="block text-sm font-medium text-gray-700">Show Average (If enabled, the average value for speedtest will be shown in the widget)</label>
-                            <input type="checkbox" name="schedule_enable" id="schedule_enable" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        <div class="col-span-12 sm:col-span-12">
+                                         
+                            <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input type="checkbox" name="schedule_enable" id="schedule_enable" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                                <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                            </div>
+                            <label for="toggle" class="text-gray-700 text-sm font-medium ">Show Average (If enabled, the average value for speedtest will be shown in the widget)</label>
+                              
                         </div>
-                        <div class="col-span-12 sm:col-span-6">
-                            <label for="schedule_enable" class="block text-sm font-medium text-gray-700">Show Max (If enabled, the maximum value for speedtest will be shown in the widget)</label>
-                            <input type="checkbox" name="schedule_enable" id="schedule_enable" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border-gray-300 rounded-md">
+
+                        <div class="col-span-12 sm:col-span-12">
+                                         
+                            <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input type="checkbox" name="schedule_enable" id="schedule_enable" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                                <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                            </div>
+                            <label for="toggle" class="text-gray-700 text-sm font-medium ">Show Max (If enabled, the maximum value for speedtest will be shown in the widget)</label>
+                              
                         </div>
-                        <div class="col-span-12 sm:col-span-6">
-                            <label for="schedule_enable" class="block text-sm font-medium text-gray-700">Show Min (If enabled, the minimum value for speedtest will be shown in the widget)</label>
-                            <input type="checkbox" name="schedule_enable" id="schedule_enable" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border-gray-300 rounded-md">
+
+                        <div class="col-span-12 sm:col-span-12">
+                                         
+                            <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input type="checkbox" name="schedule_enable" id="schedule_enable" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                                <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                            </div>
+                            <label for="toggle" class="text-gray-700 text-sm font-medium ">Show Min (If enabled, the minimum value for speedtest will be shown in the widget)</label>
+                              
                         </div>
+                       
+
+              
 
                     </div>
 
