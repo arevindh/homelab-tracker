@@ -19,4 +19,9 @@ class Settings extends Model
         }
         return '';
     }
+
+    public function getConfig(String $type, String $name)
+    {
+        return Settings::where('type', $type)->where('name', $name)->first();
+    }
 }
