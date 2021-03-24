@@ -6,7 +6,7 @@
 
     </x-slot>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white rounded">
+        <div class="bg-white rounded-t">
             <nav class="flex flex-col sm:flex-row">
                 <button wire:click="selectPage('general')" class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none {{ $page =='general' ? 'text-blue-500 border-b-2 font-medium border-blue-500' : '' }} ">
                     General
