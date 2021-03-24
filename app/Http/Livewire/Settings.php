@@ -8,9 +8,13 @@ class Settings extends Component
 {
     public $page;
 
+    protected $queryString = ['page'];
+
     public function mount()
     {
-        $this->page = "general";
+        if (!$this->page) {
+            $this->page = "general";
+        }
     }
 
     public function render()
@@ -21,5 +25,6 @@ class Settings extends Component
     public function selectPage(String $page)
     {
         $this->page = $page;
+        $this->emit('pageChange', $page);
     }
 }
