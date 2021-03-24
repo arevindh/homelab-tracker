@@ -47,6 +47,8 @@
         <livewire:settings.general />
         @elseif ($page == "notifications")
         <livewire:settings.notifications />
+        @elseif ($page == "advanced")
+        <livewire:settings.advanced />
         @endif
 
     </div>
