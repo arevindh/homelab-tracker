@@ -6,13 +6,25 @@
                     <div class="grid grid-cols-6 gap-6">
 
                         <div class="col-span-12 sm:col-span-12">
-                            <label for="speedtest_notification" class="block text-sm font-medium text-gray-700">Speedtest Notification (Enable notification for every speedtest that runs)</label>
-                            <input type="checkbox" name="speedtest_notification" id="speedtest_notification" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                         
+                            <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input type="checkbox" name="speedtest_notification" id="speedtest_notification" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                                <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                            </div>
+                            <label for="toggle" class="text-gray-700 text-sm font-medium ">Speedtest Notification (Enable notification for every speedtest that runs)</label>
+                              
                         </div>
                         <div class="col-span-12 sm:col-span-12">
-                            <label for="overview_notification" class="block text-sm font-medium text-gray-700">Speedtest Overview Notification (Enable a daily notification with average values for the last 24 hours)</label>
-                            <input type="checkbox" name="overview_notification" id="overview_notification" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                         
+                            <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input type="checkbox" name="overview_notification" id="overview_notification" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                                <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                            </div>
+                            <label for="toggle" class="text-gray-700 text-sm font-medium ">Speedtest Overview Notification (Enable a daily notification with average values for the last 24 hours)</label>
+                              
                         </div>
+
+                      
 
                         <div class="col-span-12 sm:col-span-12">
                             <label for="overview_time" class="block text-sm font-medium text-gray-700 ">Speedtest Overview Time (The hour (24-hour format )that the daily average notification will be sent) </label>
@@ -23,10 +35,18 @@
                             <label for="threshold_alert_percent" class="block text-sm font-medium text-gray-700">Threshold Alert Percentage (When any value of a speedtest is x percent lower than the average, a notification will be sent)</label>
                             <input type="text" name="threshold_alert_percent" id="threshold_alert_percent" autocomplete="server" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
+
                         <div class="col-span-12 sm:col-span-12">
-                            <label for="threshold_alert_absolute_notification" class="block text-sm font-medium text-gray-700 ">Threshold Alert Absolute Notification (Enable/Disable absolute threshold notifications) </label>
-                            <input type="checkbox" name="threshold_alert_absolute_notification" id="threshold_alert_absolute_notification" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block  shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                         
+                            <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input type="checkbox" name="threshold_alert_absolute_notification" id="threshold_alert_absolute_notification" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                                <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                            </div>
+                            <label for="toggle" class="text-gray-700 text-sm font-medium ">Threshold Alert Absolute Notification (Enable/Disable absolute threshold notifications) </label>
+                              
                         </div>
+
+
                         <div class="col-span-12 sm:col-span-12">
                             <label for="threshold_alert_absolute_download" class="block text-sm font-medium text-gray-700 ">Threshold Alert Absolute Download (When the download is lower than this value, a notification will be sent. Leave blank to disable) </label>
                             <input type="number" name="threshold_alert_absolute_download" id="threshold_alert_absolute_download" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">

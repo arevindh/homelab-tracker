@@ -1,14 +1,4 @@
-<style>
-    .toggle-checkbox:checked {
-  @apply: right-0 border-green-400;
-  right: 0;
-  border-color: #68D391;
-}
-.toggle-checkbox:checked + .toggle-label {
-  @apply: bg-green-400;
-  background-color: #68D391;
-}
-</style>
+
 
 <div class="mt-10 sm:mt-0">
     <div class="mt-5 md:mt-0 md:col-span-5">
