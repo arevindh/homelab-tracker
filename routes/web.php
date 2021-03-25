@@ -4,6 +4,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\V1\SpeedtestController;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Settings;
+use App\Http\Livewire\Settings\General;
+use App\Http\Livewire\Settings\Notifications;
 use App\Http\Livewire\Speedtest\Results as SpeedtestResults;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +27,12 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
+
+    
     Route::get('/settings', Settings::class)->name('settings');
+    Route::get('/settings/notifications', Notifications::class)->name('settings.notifications');
+    Route::get('/settings/general', General::class)->name('settings.general');
+    
     Route::get('/speedtest', SpeedtestResults::class)->name('speedtest.results');
     
     Route::get('/ajax/speedtest/history', [SpeedtestController::class, 'speedtestDatable'])->name('statistics.table');

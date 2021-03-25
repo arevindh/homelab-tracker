@@ -2,11 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Settings as ModelsSettings;
 use Livewire\Component;
 
 class Settings extends Component
 {
     public $page;
+    public $core;
+    public $speedtest;
 
     protected $queryString = ['page'];
 
@@ -15,6 +18,9 @@ class Settings extends Component
         if (!$this->page) {
             $this->page = "general";
         }
+
+        $this->core = ModelsSettings::where('type','core')->get();
+        $this->speedtest = ModelsSettings::where('type','speedtest')->get();
     }
 
     public function render()

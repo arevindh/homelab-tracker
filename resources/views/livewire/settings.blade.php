@@ -32,8 +32,8 @@
 
         </div>
 
-        @if ($page == "general")
-        <livewire:settings.general />
+        @if ($page == "general"  )
+        <livewire:settings.general :core="$core" :speedtest="$speedtest" />
         @elseif ($page == "notifications")
         <livewire:settings.notifications />
         @endif
