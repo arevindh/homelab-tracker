@@ -50,6 +50,24 @@
                                     <input type="text" name="server" id="server" wire:model="server"
                                         autocomplete="server"
                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+
+
+                                </div>
+                                <div class="col-span-12 sm:col-span-12">
+
+                                    <button
+                                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        wire:click="suggest">Toggle Suggesions</button>
+                                    <div class="px-2"> 
+                                    @if ($suggested)
+                                        @foreach ($suggested as $suggested_item)
+                                            <li wire:click="addServer({{ $suggested_item['id'] }})">
+                                                {{ $suggested_item['sponsor'] }}
+                                                {{ !empty($suggested_item['force_ping_select']) ? '(Suggested)' : '' }}
+                                            </li>
+                                        @endforeach
+                                    @endif
+                                </div>
                                 </div>
 
                                 <div class="col-span-12 sm:col-span-12">

@@ -3,7 +3,9 @@
 namespace App\Http\Livewire\Settings;
 
 use App\Models\Settings;
+use Illuminate\Support\Facades\Http;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class General extends Component
 {
@@ -12,6 +14,7 @@ class General extends Component
     public $server;
     public $site_name;
     public $page;
+    public $suggested;
 
     protected $rules = [
         'schedule_enabled' => 'required|bool',
@@ -28,6 +31,26 @@ class General extends Component
         $this->schedule = Settings::getConfig('speedtest', 'schedule');
         $this->schedule_enabled = (Settings::getConfig('speedtest', 'schedule_enabled') == 'yes') ? true : false;
         $this->page = "general";
+    }
+
+
+    public function suggest()
+    {
+        if($this->suggested){
+            $this->suggested= null;
+        }else{
+            $response = Http::get('https://www.speedtest.net/api/js/servers?engine=js&limit=10&https_functional=true');
+
+            if ($response->successful()) {
+                $this->suggested = $response->collect();
+            }
+        }
+        
+    }
+
+    public function addServer($id)
+    {
+        $this->server = Str::of($this->server . ',' . $id)->trim(',');;
     }
 
     public function render()
