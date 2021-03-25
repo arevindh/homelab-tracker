@@ -55,17 +55,37 @@
                                 </div>
                                 <div class="col-span-12 sm:col-span-12">
 
-                                    <button
-                                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                        wire:click="suggest">Toggle Suggesions</button>
+                                    <a class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        wire:click="suggest">Toggle Suggesions</a>
                                     <div class="px-2"> 
+
+              
+                                        
                                     @if ($suggested)
-                                        @foreach ($suggested as $suggested_item)
-                                            <li wire:click="addServer({{ $suggested_item['id'] }})">
-                                                {{ $suggested_item['sponsor'] }}
+                                    <table class="min-w-max divide-y divide-x divide-gray-200">
+                                        <thead class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <th class="w-1/6">Id</th>
+                                            <th >Provider</th>
+                                        </tr>
+                                        </thead>
+                                        
+                                        <tbody  class="bg-white divide-y divide-gray-200">
+                                            @foreach ($suggested as $suggested_item)
+                                            <tr> 
+                                                <td>
+                                                    {{$suggested_item['id']}} 
+                                                </td>
+                                                <td>
+                                                    {{ $suggested_item['sponsor'] }}
                                                 {{ !empty($suggested_item['force_ping_select']) ? '(Suggested)' : '' }}
-                                            </li>
+                                                </td>
+                                            </tr>
                                         @endforeach
+                                        </tbody>
+                                    </table>
+                                       
+                                    
                                     @endif
                                 </div>
                                 </div>
