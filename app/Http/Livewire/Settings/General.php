@@ -7,18 +7,17 @@ use Livewire\Component;
 
 class General extends Component
 {
-    public $enable_speedtest;
+    public $schedule_enabled;
     public $schedule;
     public $server;
-    public $settings;
     public $site_name;
     public $page;
 
     protected $rules = [
-        'schedule_enabled' => 'string',
+        'schedule_enabled' => 'required|bool',
         'server' => 'string',
-        'schedule' => 'string',
-        'site_name' => 'string'
+        'schedule' => 'required|string',
+        'site_name' => 'required|string'
     ];
 
 
@@ -27,7 +26,7 @@ class General extends Component
         $this->site_name = Settings::getConfig('core', 'site_name');
         $this->server = Settings::getConfig('speedtest', 'server');
         $this->schedule = Settings::getConfig('speedtest', 'schedule');
-        $this->schedule_enabled = Settings::getConfig('speedtest', 'schedule_enabled');
+        $this->schedule_enabled = (Settings::getConfig('speedtest', 'schedule_enabled') == 'yes') ? true : false;
         $this->page = "general";
     }
 
@@ -36,7 +35,18 @@ class General extends Component
         return view('livewire.settings.general');
     }
 
-    public function save()
+    public function submit()
     {
+        $this->validate();
+
+        Settings::setConfig('core', 'site_name', $this->site_name);
+        Settings::setConfig('speedtest', 'schedule', $this->schedule);
+        Settings::setConfig('speedtest', 'schedule_enabled', $this->schedule_enabled ? 'yes' : 'no');
+        Settings::setConfig('speedtest', 'server', $this->server);
+
+        $this->dispatchBrowserEvent(
+            'alert',
+            ['type' => 'success',  'message' => 'General Settings saved.']
+        );
     }
 }
