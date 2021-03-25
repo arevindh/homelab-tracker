@@ -1,3 +1,14 @@
+<style>
+    .toggle-checkbox:checked {
+  @apply: right-0 border-green-400;
+  right: 0;
+  border-color: #68D391;
+}
+.toggle-checkbox:checked + .toggle-label {
+  @apply: bg-green-400;
+  background-color: #68D391;
+}
+</style>
 <div class="py-6">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -36,6 +47,8 @@
         <livewire:settings.general :core="$core" :speedtest="$speedtest" />
         @elseif ($page == "notifications")
         <livewire:settings.notifications />
+        @elseif ($page == "advanced")
+        <livewire:settings.advanced />
         @endif
 
     </div>

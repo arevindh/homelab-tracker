@@ -21,18 +21,16 @@
             }
 
         </style>
-
         <div class="mt-10 sm:mt-0">
             <div class="mt-5 md:mt-0 md:col-span-5">
-                <form wire:submit.prevent="save">
+                <form action="#" method="POST">
                     <div class="shadow overflow-hidden ">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-12 sm:col-span-12">
                                     <label for="first_name" class="block text-sm font-medium text-gray-700">App Name
                                         (Set a custom name for you application)</label>
-                                    <input type="text" name="app_name" wire:model="site_name" id="app_name"
-                                        autocomplete="app_name"
+                                    <input type="text" name="app_name" id="app_name" autocomplete="app_name"
                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                 </div>
                                 <div class="col-span-6 sm:col-span-6">
@@ -48,6 +46,7 @@
                                         (Enable or Diasble the schedule worker)</label>
 
                                 </div>
+
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="schedule"
