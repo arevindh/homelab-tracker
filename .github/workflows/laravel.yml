@@ -53,3 +53,12 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+    - name: package docker
+      run: |
+        VERSION=$(date +%s)
+        docker login docker.pkg.github.com --username arevindh --password ${{ secrets.GITHUB_TOKEN }}
+        docker build . --file Dockerfile --tag docker.pkg.github.com/arevindh/homelab-tracker/app:${VERSION}
+        docker push docker.pkg.github.com/arevindh/homelab-tracker/app:${VERSION}
+      env:
+        CI: true
