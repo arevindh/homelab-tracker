@@ -61,12 +61,6 @@ class InstallCLICommand extends Command
                 break;
         }
 
-        $this->info("Settings up database");
-
-        exec('mkdir -p '.storage_path().'/database');
-        
-        exec('touch '.storage_path().'/database/homelab.sqlite');
-
         $this->info("Speedtest CLI is maintained by the Ookla team (https://www.speedtest.net/apps/cli) ");
 
         $dl_url = "https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-$arch-linux.tgz";
