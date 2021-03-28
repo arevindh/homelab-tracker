@@ -1,3 +1,0 @@
-#!/usr/bin/with-contenv bash
-
-exec s6-setuidgid abc php /config/homelab/artisan queue:work --timeout=120 >> /config/log/homelab/queue.log

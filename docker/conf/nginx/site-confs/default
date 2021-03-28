@@ -1,0 +1,16 @@
+server {
+    listen 80 default_server;
+
+    root /config/www/public;
+    index index.php;
+
+    server_name _;
+
+    client_max_body_size 0;
+
+    # Static web content
+    location / {
+        try_files $uri $uri/ /index.html /index.php?$args =404;
+    }
+
+}
