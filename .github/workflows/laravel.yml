@@ -46,10 +46,7 @@ jobs:
         DB_DATABASE: storage/database/homelab.sqlite
       run: php artisan migrate
 
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-
-    - name: package docker latest
+    - name: Build docker latest
       run: |
         VERSION=$(date +%s)
         docker login --username arevindh --password ${{ secrets.DOCKER_ACCESS_TOKEN }}
@@ -58,11 +55,11 @@ jobs:
       env:
         CI: true
 
-    - name: package docker with timestamp
+    - name: Build docker with timestamp
       run: |
         VERSION=$(date +%s)
         docker login --username arevindh --password ${{ secrets.DOCKER_ACCESS_TOKEN }}
         docker build . --file Dockerfile --tag arevindh/homelab-tracker:$(date +%s)
-        docker push arevindh/homelab-tracker:latest
+        docker push arevindh/homelab-tracker:$(date +%s)
       env:
         CI: true
