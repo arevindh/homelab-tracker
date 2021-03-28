@@ -7,7 +7,7 @@ on:
     branches: [ docker-dev ]
 
 jobs:
-  laravel-tests:
+  laravel-build-publish:
     runs-on: ubuntu-latest
     steps:
     - uses: shivammathur/setup-php@b7d1d9c9a92d8d8463ce36d7f60da34d461724f8
@@ -55,19 +55,6 @@ jobs:
       with:
         name: laravel-node_modules
         path: node_modules
-  
-  build:
-    needs: laravel-tests
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-
-    - uses: actions/download-artifact@v2
-      with:
-        name: laravel-vendor
-    - uses: actions/download-artifact@v2
-      with:
-        name: laravel-node_modules
 
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
@@ -80,3 +67,4 @@ jobs:
         docker push arevindh/homelab-tracker:latest
       env:
         CI: true
+  
