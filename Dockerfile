@@ -14,8 +14,6 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 WORKDIR /config/www/
 
-COPY .env.example /config/www/.env
-
 RUN composer install
 
 EXPOSE 80 443
