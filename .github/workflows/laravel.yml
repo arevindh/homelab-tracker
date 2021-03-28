@@ -20,6 +20,18 @@ jobs:
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Generate key
       run: php artisan key:generate
+
+    - name: Get node.js cache directory
+      id: node-cache-dir
+      run: echo "::set-output name=dir::$(npm config get cache)" # Use $(yarn cache dir) for yarn
+
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ${{ steps.node-cache-dir.outputs.dir }}
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }} # Use '**/yarn.lock' for yarn
+        restore-keys: ${{ runner.os }}-node-
+
     - name: Install npm
       run: npm install && npm run dev
     - name: Directory Permissions
