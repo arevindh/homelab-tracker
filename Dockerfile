@@ -7,6 +7,8 @@ RUN mkdir -p /config
 
 COPY . /config/www/
 
+COPY docker/conf/nginx/site-confs/default /config/nginx/site-confs/default
+
 EXPOSE 80 443
 
 VOLUME ["/config"]
