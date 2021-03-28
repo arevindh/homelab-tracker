@@ -7,7 +7,7 @@ RUN mkdir -p /config
 
 COPY . /config/www/
 
-COPY docker/conf/nginx/site-confs/default /config/nginx/site-confs/default
+COPY docker/conf/ /config/
 
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
