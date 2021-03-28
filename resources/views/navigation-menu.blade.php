@@ -106,7 +106,7 @@
                                 {{ __('Profile') }}
                             </x-jet-dropdown-link>
 
-                            <x-jet-dropdown-link href="{{ route('settings') }}">
+                            <x-jet-dropdown-link href="{{ route('settings.general') }}">
                                 {{ __('Settings') }}
                             </x-jet-dropdown-link>
 
