@@ -57,8 +57,8 @@ jobs:
     - name: package docker
       run: |
         VERSION=$(date +%s)
-        docker login docker.pkg.github.com --username arevindh --password ${{ secrets.GITHUB_TOKEN }}
-        docker build . --file Dockerfile --tag docker.pkg.github.com/arevindh/homelab-tracker/homelab:latest
-        docker push docker.pkg.github.com/arevindh/homelab-tracker/homelab:latest
+        docker login --username arevindh --password ${{ secrets.DOCKER_ACCESS_TOKEN }}
+        docker build . --file Dockerfile --tag docker push arevindh/homelab-tracker:latest
+        docker push arevindh/homelab-tracker:latest
       env:
         CI: true
