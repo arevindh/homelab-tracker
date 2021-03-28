@@ -46,16 +46,6 @@ jobs:
         DB_DATABASE: storage/database/homelab.sqlite
       run: php artisan migrate
 
-    - uses: actions/upload-artifact@v2
-      with:
-        name: laravel-vendor
-        path: vendor
-
-    - uses: actions/upload-artifact@v2
-      with:
-        name: laravel-node_modules
-        path: node_modules
-
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
 
