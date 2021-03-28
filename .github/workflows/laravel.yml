@@ -58,7 +58,7 @@ jobs:
       run: |
         VERSION=$(date +%s)
         docker login --username arevindh --password ${{ secrets.DOCKER_ACCESS_TOKEN }}
-        docker build . --file Dockerfile --tag docker push arevindh/homelab-tracker:latest
+        docker build . --file Dockerfile --tag arevindh/homelab-tracker:latest
         docker push arevindh/homelab-tracker:latest
       env:
         CI: true
