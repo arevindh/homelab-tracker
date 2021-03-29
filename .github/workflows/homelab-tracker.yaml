@@ -1,10 +1,10 @@
-name: Laravel
+name: HomeLab
 
 on:
   push:
-    branches: [ docker-dev ]
+    branches: [ dev ]
   pull_request:
-    branches: [ docker-dev ]
+    branches: [ dev ]
 
 jobs:
   laravel-build-publish:
