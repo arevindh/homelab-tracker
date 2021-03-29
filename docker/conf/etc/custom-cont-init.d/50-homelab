@@ -34,8 +34,6 @@ fi
 
 php /config/www/artisan speedtest:install
 
-php /config/www/artisan speedtest:eula
-
 php /config/www/artisan speedtest:run
 
 echo "Clearing old jobs from queue"
@@ -43,4 +41,6 @@ php /config/www/artisan queue:clear
 
 chown -R abc:abc /config
 
-chmod +x /config/www/app/Bin/speedtest
+chmod +x /config/www/storage/speedtest-cli/cli/speedtest
+
+cp /defaults/crontab /etc/crontabs/root

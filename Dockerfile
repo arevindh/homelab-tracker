@@ -9,12 +9,15 @@ COPY . /config/www/
 
 COPY docker/conf/ /config/
 
-
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 WORKDIR /config/www/
 
-RUN composer install
+RUN mkdir -p /config/log/homelab
+RUN touch /config/log/homelab/cron.log
+RUN touch /config/log/homelab/queue.log
+RUN touch /config/log/homelab.cron.log
+RUN chown abc:abc /config/log/homelab
 
 EXPOSE 80 443
 
