@@ -44,3 +44,9 @@ chown -R abc:abc /config
 chmod +x /config/www/storage/speedtest-cli/cli/speedtest
 
 cp /config/docker/conf/defaults/crontab /etc/crontabs/root
+
+mkdir -p /config/log/homelab 
+touch /config/log/homelab/cron.log
+touch /config/log/homelab/cron-retry.log 
+touch /config/log/homelab/queue.log
+chown -R abc:abc /config/log/homelab
