@@ -8,7 +8,7 @@ on:
 
 jobs:
   laravel-build-publish:
-    runs-on: ['self-hosted','X64']
+    runs-on: ubuntu-latest
     steps:
     - uses: shivammathur/setup-php@b7d1d9c9a92d8d8463ce36d7f60da34d461724f8
       with:
@@ -18,7 +18,7 @@ jobs:
       run: php -r "copy('.env.example', '.env');"
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-    - name: Generate key 
+    - name: Generate key
       run: php artisan key:generate
 
     - name: Get node.js cache directory
