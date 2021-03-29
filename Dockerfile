@@ -16,7 +16,6 @@ WORKDIR /config/www/
 RUN mkdir -p /config/log/homelab
 RUN touch /config/log/homelab/cron.log
 RUN touch /config/log/homelab/queue.log
-RUN touch /config/log/homelab.cron.log
 RUN chown abc:abc /config/log/homelab
 
 EXPOSE 80 443
