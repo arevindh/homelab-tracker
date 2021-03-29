@@ -55,11 +55,31 @@ jobs:
       env:
         CI: true
 
-    - name: Build docker with timestamp
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+        fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+    - name: Create local changes
       run: |
-        VERSION=$(date +%s)
-        docker login --username arevindh --password ${{ secrets.DOCKER_ACCESS_TOKEN }}
-        docker build . --file Dockerfile --tag arevindh/homelab-tracker:${VERSION}
-        docker push arevindh/homelab-tracker:${VERSION}
-      env:
-        CI: true
+        ...
+    - name: Commit files
+      run: |
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add --all
+        git commit -m "Add changes" -a
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: docker-hub
+
+    # - name: Build docker with timestamp
+    #   run: |
+    #     VERSION=$(date +%s)
+    #     docker login --username arevindh --password ${{ secrets.DOCKER_ACCESS_TOKEN }}
+    #     docker build . --file Dockerfile --tag arevindh/homelab-tracker:${VERSION}
+    #     docker push arevindh/homelab-tracker:${VERSION}
+    #   env:
+    #     CI: true
