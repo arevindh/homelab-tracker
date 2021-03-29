@@ -43,7 +43,7 @@ chown -R abc:abc /config
 
 chmod +x /config/www/storage/speedtest-cli/cli/speedtest
 
-cp /config/docker/conf/defaults/crontab /etc/crontabs/root
+cp /config/defaults/crontab /etc/crontabs/root
 
 mkdir -p /config/log/homelab 
 touch /config/log/homelab/cron.log
