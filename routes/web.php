@@ -20,26 +20,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::get('/', function () {
+        return redirect('/dashboard');
+    });
+
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
-    
+
     Route::get('/settings', Settings::class)->name('settings');
     Route::get('/settings/notifications', Notifications::class)->name('settings.notifications');
     Route::get('/settings/general', General::class)->name('settings.general');
-    
+
     Route::get('/speedtest', SpeedtestResults::class)->name('speedtest.results');
-    
+
     Route::get('/ajax/speedtest/history', [SpeedtestController::class, 'speedtestDatable'])->name('statistics.table');
     Route::get('/ajax/latest', [DashboardController::class, 'getLatest'])->name('chart.latest');
     Route::get('/ajax/speedtest/{id}', [DashboardController::class, 'getSingleResult'])->name('chart.single');
-    
+
 
     Route::get('/ajax/stats', [DashboardController::class, 'getStatistics'])->name('statistics.latest');
-        
 });
