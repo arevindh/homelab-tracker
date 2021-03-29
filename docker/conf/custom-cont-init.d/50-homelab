@@ -34,10 +34,11 @@ fi
 
 php /config/www/artisan speedtest:install
 
-php /config/www/artisan speedtest:run
 
 echo "Clearing old jobs from queue"
 php /config/www/artisan queue:clear
+
+php /config/www/artisan speedtest:run &&
 
 chown -R abc:abc /config
 
