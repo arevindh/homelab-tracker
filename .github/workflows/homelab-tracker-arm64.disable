@@ -1,0 +1,42 @@
+name: Laravel
+
+on:
+  push:
+    branches: [ docker-dev ]
+  pull_request:
+    branches: [ docker-dev ]
+
+jobs:
+  laravel-build-publish:
+    runs-on: ['self-hosted', 'arm64']
+    steps:
+    - uses: actions/checkout@v2
+    - name: Copy .env
+      run: php -r "copy('.env.example', '.env');"
+    - name: Install Dependencies
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+    - name: Generate key
+      run: php artisan key:generate
+
+    - name: Install npm
+      run: yarn install && yarn dev
+    - name: Directory Permissions
+      run: chmod -R 777 storage bootstrap/cache
+    - name: Create Database
+      run: |
+        mkdir -p storage/database
+        touch storage/database/homelab.sqlite
+    - name: Migrate DB
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: storage/database/homelab.sqlite
+      run: php artisan migrate
+
+    - name: Build docker latest
+      run: |
+        VERSION=$(date +%s)
+        docker login --username arevindh --password ${{ secrets.DOCKER_ACCESS_TOKEN }}
+        docker build . --file DockerfileARM64 --tag arevindh/homelab-tracker:manifest-arm64v8
+        docker push arevindh/homelab-tracker:manifest-arm64v8
+      env:
+        CI: true

@@ -10,12 +10,13 @@
                         </span>
                     </div>
                     <div class="flex flex-col justify-center">
-                        <div class="text-lg font-black">{{convertToReadableSize($latest->download_bandwidth)}}</div>
-                        <div class="text-xs">Max : {{convertToReadableSize($stats->max_download_bandwidth)}} </div>
-                        <div class="text-xs">Min : {{convertToReadableSize($stats->min_download_bandwidth)}}</div>
-                        <div class="text-xs">Avg : {{convertToReadableSize($stats->avg_download_bandwidth)}}</div>
+                        <div class="text-lg font-black">{{convertToReadableSize($latest->download_bandwidth ?? 0)}}</div>
+                        <div class="text-xs">Max : {{convertToReadableSize($stats->max_download_bandwidth ?? 0)}} </div>
+                        <div class="text-xs">Min : {{convertToReadableSize($stats->min_download_bandwidth ?? 0)}}</div>
+                        <div class="text-xs">Avg : {{convertToReadableSize($stats->avg_download_bandwidth ?? 0)}}</div>
                         <div class="text-sm text-gray-400">Download Speed</div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -30,10 +31,10 @@
                         </span>
                     </div>
                     <div class="flex flex-col justify-center">
-                        <div class="text-lg font-black">{{convertToReadableSize($latest->upload_bandwidth)}}</div>
-                        <div class="text-xs">Max {{convertToReadableSize($stats->max_upload_bandwidth)}} </div>
-                        <div class="text-xs">Min {{convertToReadableSize($stats->min_upload_bandwidth)}}</div>
-                        <div class="text-xs">Avg: {{convertToReadableSize($stats->avg_upload_bandwidth)}}</div>
+                        <div class="text-lg font-black">{{convertToReadableSize($latest->upload_bandwidth ?? 0)}}</div>
+                        <div class="text-xs">Max {{convertToReadableSize($stats->max_upload_bandwidth ?? 0)}} </div>
+                        <div class="text-xs">Min {{convertToReadableSize($stats->min_upload_bandwidth ?? 0)}}</div>
+                        <div class="text-xs">Avg: {{convertToReadableSize($stats->avg_upload_bandwidth ?? 0)}}</div>
                         <div class="text-sm text-gray-400">Upload Speed</div>
                     </div>
                 </div>
@@ -50,10 +51,10 @@
                         </span>
                     </div>
                     <div class="flex flex-col justify-center">
-                        <div class="text-lg font-black">{{$latest->ping_latency}} ms</div>
-                        <div class="text-xs">Max : {{$stats->max_ping_latency}} ms</div>
-                        <div class="text-xs">Min : {{$stats->min_ping_latency}} ms</div>
-                        <div class="text-xs">Avg : {{$stats->avg_ping_latency}} ms</div>
+                        <div class="text-lg font-black">{{$latest->ping_latency ?? 0}} ms</div>
+                        <div class="text-xs">Max : {{$stats->max_ping_latency ?? 0}} ms</div>
+                        <div class="text-xs">Min : {{$stats->min_ping_latency ?? 0}} ms</div>
+                        <div class="text-xs">Avg : {{$stats->avg_ping_latency ?? 0}} ms</div>
                         <div class="text-sm text-gray-400">Latency</div>
                     </div>
                 </div>
@@ -70,10 +71,10 @@
                         </span>
                     </div>
                     <div class="flex flex-col justify-center">
-                        <div class="text-lg font-black">{{convertToReadableSize($latest->ping_jitter)}}</div>
-                        <div class="text-sm">Max : {{$stats->max_ping_jitter}} ms</div>
-                        <div class="text-xs">Min : {{$stats->min_ping_jitter}} ms</div>
-                        <div class="text-xs">Avg : {{$stats->avg_ping_jitter}} </div>
+                        <div class="text-lg font-black">{{convertToReadableSize($latest->ping_jitter ?? 0)}}</div>
+                        <div class="text-sm">Max : {{$stats->max_ping_jitter ?? 0}} ms</div>
+                        <div class="text-xs">Min : {{$stats->min_ping_jitter ?? 0}} ms</div>
+                        <div class="text-xs">Avg : {{$stats->avg_ping_jitter ?? 0}} </div>
                         <div class="text-sm text-gray-400">Jitter</div>
                     </div>
                 </div>

@@ -1,0 +1,97 @@
+name: HomeLab
+
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+
+jobs:
+  laravel-build-publish:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - uses: shivammathur/setup-php@b7d1d9c9a92d8d8463ce36d7f60da34d461724f8
+      with:
+        php-version: '8.0'
+    - uses: actions/checkout@v2
+    - name: Copy .env
+      run: php -r "copy('.env.example', '.env');"
+    - name: Install Dependencies
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+    - name: Generate key
+      run: php artisan key:generate
+
+    - name: Get node.js cache directory
+      id: node-cache-dir
+      run: echo "::set-output name=dir::$(npm config get cache)" # Use $(yarn cache dir) for yarn
+
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ${{ steps.node-cache-dir.outputs.dir }}
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }} # Use '**/yarn.lock' for yarn
+        restore-keys: ${{ runner.os }}-node-
+
+    - name: Install npm
+      run: npm install && npm run dev
+    - name: Directory Permissions
+      run: chmod -R 777 storage bootstrap/cache
+    - name: Create Database
+      run: |
+        mkdir -p storage/database
+        touch storage/database/homelab.sqlite
+    - name: Migrate DB
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: storage/database/homelab.sqlite
+      run: php artisan migrate
+
+    - name: Prepare
+      id: prep
+      run: |
+        DOCKER_IMAGE=${{ secrets.DOCKER_USERNAME }}/${GITHUB_REPOSITORY#*/}
+        VERSION=latest
+        SHORTREF=${GITHUB_SHA::8}
+
+        # If this is git tag, use the tag name as a docker tag
+        if [[ $GITHUB_REF == refs/tags/* ]]; then
+          VERSION=${GITHUB_REF#refs/tags/v}
+        fi
+        TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${SHORTREF}"
+
+        # If the VERSION looks like a version number, assume that
+        # this is the most recent version of the image and also
+        # tag it 'latest'.
+        if [[ $VERSION =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+          TAGS="$TAGS,${DOCKER_IMAGE}:latest"
+        fi
+
+        # Set output parameters.
+        echo ::set-output name=tags::${TAGS}
+        echo ::set-output name=docker_image::${DOCKER_IMAGE}
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@master
+      with:
+        platforms: all
+
+    - name: Set up Docker Buildx
+      id: buildx
+      uses: docker/setup-buildx-action@master
+
+    - name: Login to DockerHub
+      if: github.event_name != 'pull_request'
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+
+    - name: Build
+      uses: docker/build-push-action@v2
+      with:
+        builder: ${{ steps.buildx.outputs.name }}
+        context: .
+        file: ./Dockerfile
+        platforms: linux/amd64,linux/arm64,linux/armhf
+        push: true
+        tags: ${{ steps.prep.outputs.tags }}
