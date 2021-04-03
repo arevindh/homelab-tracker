@@ -5,7 +5,7 @@
 
 # Copy site files to /config
 echo "Copying latest site files to config"
-cp -rfT /app/ /config/www/
+cp -rfT /app/config/ /config/
 
 # Check for DB
 if [ ! -f /config/www/storage/database/homelab.sqlite ]; then
