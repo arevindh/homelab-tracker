@@ -3,11 +3,11 @@ LABEL maintainer=arevindh@protonmail.com
 
 # ENV arch='x86_64'
 
-RUN mkdir -p /app/config/www
+RUN mkdir -p /config /app
 
-COPY . /app/config/www
+COPY . /app
 
-COPY docker/conf/ /app/config
+COPY docker/conf/ /config/
 
 # COPY --from=composer /usr/bin/composer /usr/bin/composer
 
