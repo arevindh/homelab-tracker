@@ -3,7 +3,7 @@ LABEL maintainer=arevindh@protonmail.com
 
 # ENV arch='x86_64'
 
-RUN mkdir -p /config  &&  mkdir /app
+RUN mkdir -p /config /app
 
 COPY . /app/
 
