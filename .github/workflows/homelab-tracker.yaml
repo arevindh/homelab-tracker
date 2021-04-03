@@ -46,11 +46,11 @@ jobs:
         DB_DATABASE: storage/database/homelab.sqlite
       run: php artisan migrate
 
+
     - name: Delete Create Database after testing
       run: |
          rm -f storage/database/homelab.sqlite
          rm -f .env
-    - name: Delete test db
 
     - name: Prepare
       id: prep
