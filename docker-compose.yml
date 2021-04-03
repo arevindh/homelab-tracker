@@ -4,11 +4,13 @@ services:
   nginx:
     image: arevindh/homelab-tracker
     container_name: homelab-tracker
+    volumes:
+      - ./www:/config/www
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
     ports:
-      - 80:80
-      - 443:443
+      - 6080:80
+      - 6443:443
     restart: unless-stopped
