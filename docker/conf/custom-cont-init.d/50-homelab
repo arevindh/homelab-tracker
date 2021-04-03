@@ -2,6 +2,11 @@
 
 # Set up script
 
+
+# Copy site files to /config
+echo "Copying latest site files to config"
+cp -rfT /app/ /config/www/
+
 # Check for DB
 if [ ! -f /config/www/storage/database/homelab.sqlite ]; then
     echo "Database file not found! Creating empty database"
