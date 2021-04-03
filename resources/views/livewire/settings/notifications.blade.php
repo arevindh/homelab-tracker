@@ -22,7 +22,7 @@
 
         <div class="mt-10 sm:mt-0">
             <div class="mt-5 md:mt-0 md:col-span-5">
-                <form action="#" method="POST">
+                <form wire:submit.prevent="submit">
                     <div class="shadow overflow-hidden ">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="grid grid-cols-6 gap-6">
@@ -31,7 +31,7 @@
 
                                     <div
                                         class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                        <input type="checkbox" name="speedtest_notification" id="speedtest_notification"
+                                        <input type="checkbox"  wire:model="single_notification" name="speedtest_notification" id="speedtest_notification"
                                             class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
                                         <label for="toggle"
                                             class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>

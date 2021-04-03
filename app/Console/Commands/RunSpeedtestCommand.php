@@ -4,10 +4,13 @@ namespace App\Console\Commands;
 
 use App\Models\Settings;
 use App\Models\Speedtest;
+use App\Notifications\SpeedtestNotification;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Notification;
+use NotificationChannels\Telegram\TelegramChannel;
 
 class RunSpeedtestCommand extends Command
 {
@@ -101,12 +104,31 @@ class RunSpeedtestCommand extends Command
             $speedtest->save();
             $this->info("Speedtest successful");
             Log::info('Speedtest successful');
+            
+            $this->notify($speedtest);
+
         } catch (\Throwable $th) {
             $speedtest->status = "failed";
             $speedtest->save();
             $this->info("Speedtest failed");
             Log::info('Speedtest failed');
             throw $th;
+        }
+    }
+
+    private function notify(Speedtest $result)
+    {
+        if (
+            Settings::getValue('speedtest', 'single_notification') == "yes"
+            && !empty(Settings::getValue('telegram', 'telgram_bot_token'))
+            && !empty(Settings::getValue('telegram', 'telgram_chat_id'))
+        ) {
+            try {
+                Notification::route('telegram', Settings::getValue('telegram', 'telgram_chat_id'))
+                    ->notify(new SpeedtestNotification($result));
+            } catch (\Throwable $th) {
+                $this->error("Notification failed");
+            }
         }
     }
 }
