@@ -2,6 +2,8 @@
 
 # Set up script
 
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+
 
 # Copy site files to /config
 echo "Copying latest site files to config"
