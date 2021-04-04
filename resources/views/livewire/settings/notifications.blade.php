@@ -31,13 +31,14 @@
 
                                     <div
                                         class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                        <input type="checkbox"  wire:model="single_notification" name="speedtest_notification" id="speedtest_notification"
+                                        <input type="checkbox" wire:model="single_notification"
+                                            name="speedtest_notification" id="speedtest_notification"
                                             class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
                                         <label for="toggle"
                                             class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
                                     </div>
-                                    <label for="toggle" class="text-gray-700 text-sm font-medium ">Speedtest
-                                        Notification (Enable notification for every speedtest that runs)</label>
+                                    <label for="toggle" class="text-gray-700 text-sm font-medium ">Speedtest Notification (Enable notification for every speedtest that runs)</label>
+                                    <x-jet-input-error for="single_notification" class="mt-2" />
 
                                 </div>
                                 <div class="col-span-12 sm:col-span-12">
@@ -49,68 +50,78 @@
                                         <label for="toggle"
                                             class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
                                     </div>
-                                    <label for="toggle" class="text-gray-700 text-sm font-medium ">Speedtest Overview
-                                        Notification (Enable a daily notification with average values for the last 24
-                                        hours)</label>
+                                    <label for="toggle" class="text-gray-700 text-sm font-medium ">Speedtest Overview Notification (Enable a daily notification with average values for the last 24 hours)</label>
 
                                 </div>
 
                                 <div class="col-span-12 sm:col-span-12">
-                                    <label for="telgram_bot_token"
-                                        class="block text-sm font-medium text-gray-700 "> Telegram API Token </label>
-                                    <input type="text" name="telgram_bot_token" id="telgram_bot_token" wire:model="telgram_bot_token"
-                                        autocomplete="family-name"
+                                    <label for="telgram_bot_token" class="block text-sm font-medium text-gray-700 ">
+                                        Telegram API Token </label>
+                                    <input :type="show ? 'password' : 'text'" name="telgram_bot_token"
+                                        id="telgram_bot_token" wire:model="telgram_bot_token"
+                                        autocomplete="telgram_bot_token"
                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    <x-jet-input-error for="telgram_bot_token" class="mt-2" />
                                 </div>
 
 
                                 <div class="col-span-12 sm:col-span-12">
-                                    <label for="telgram_chat_id"
-                                        class="block text-sm font-medium text-gray-700 " > Telegram Chat id </label>
-                                    <input type="number" wire:model="telgram_chat_id" name="telgram_chat_id" id="telgram_chat_id"
-                                        autocomplete="family-name"
+                                    <label for="telgram_chat_id" class="block text-sm font-medium text-gray-700 ">
+                                        Telegram Chat id </label>
+                                    <input type="number" wire:model="telgram_chat_id" name="telgram_chat_id"
+                                        id="telgram_chat_id" autocomplete="telgram_chat_id"
                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    <x-jet-input-error for="telgram_chat_id" class="mt-2" />
                                 </div>
 
 
                                 <div class="col-span-12 sm:col-span-12">
                                     <label for="threshold_alert_percent"
-                                        class="block text-sm font-medium text-gray-700">Threshold Alert Percentage (When
-                                        any value of a speedtest is x percent lower than the average, a notification
-                                        will be sent)</label>
-                                    <input wire:model="notification_threshold" type="text" name="threshold_alert_percent" id="threshold_alert_percent"
+                                        class="block text-sm font-medium text-gray-700">Threshold Alert Percentage (
+                                        Percent below defined bandwidth notifications will sent)</label>
+                                    <input wire:model="notification_threshold" type="text"
+                                        name="threshold_alert_percent" id="threshold_alert_percent"
                                         autocomplete="server"
                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+
+                                    <x-jet-input-error for="notification_threshold" class="mt-2" />
                                 </div>
 
                                 <div class="col-span-12 sm:col-span-12">
 
                                     <div
                                         class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                        <input type="checkbox" name="threshold_alert_absolute_notification" wire:model="enable_threshold_notification"
+                                        <input type="checkbox" name="threshold_alert_absolute_notification"
+                                            wire:model="enable_threshold_notification"
                                             id="threshold_alert_absolute_notification"
                                             class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
                                         <label for="toggle"
                                             class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
                                     </div>
                                     <label for="toggle" class="text-gray-700 text-sm font-medium ">Threshold Alert
-                                        Absolute Notification (Enable/Disable absolute threshold notifications) </label>
+                                        Absolute Notification (Enable/Disable threshold notifications) </label>
+
+                                    <x-jet-input-error for="enable_threshold_notification" class="mt-2" />
                                 </div>
 
                                 <div class="col-span-12 sm:col-span-12">
-                                    <label for="upload_bandwidth"
-                                        class="block text-sm font-medium text-gray-700 " > Upload bandwidth</label>
-                                    <input type="number" wire:model="upload_bandwidth" name="upload_bandwidth" id="upload_bandwidth"
-                                        autocomplete="family-name"
-                     upload_bandwidth                   class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                </div>
-
-                                <div class="col-span-12 sm:col-span-12">
-                                    <label for="download_bandwidth"
-                                        class="block text-sm font-medium text-gray-700 " > Download bandwidth</label>
-                                    <input type="number" wire:model="download_bandwidth" name="download_bandwidth" id="download_bandwidth"
-                                        autocomplete="family-name"
+                                    <label for="upload_bandwidth" class="block text-sm font-medium text-gray-700 ">
+                                        Upload bandwidth</label>
+                                    <input type="number" wire:model="upload_bandwidth" name="upload_bandwidth"
+                                        id="upload_bandwidth" autocomplete="fupload_bandwidth"
                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+
+                                    <x-jet-input-error for="upload_bandwidth" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-12 sm:col-span-12">
+                                    <label for="download_bandwidth" class="block text-sm font-medium text-gray-700 ">
+                                        Download bandwidth</label>
+                                    <input type="number" wire:model="download_bandwidth" name="download_bandwidth"
+                                        id="download_bandwidth" autocomplete="download_bandwidth"
+                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+
+                                    <x-jet-input-error for="download_bandwidth" class="mt-2" />
                                 </div>
 
                                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">

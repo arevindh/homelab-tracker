@@ -18,6 +18,8 @@
                                     <input type="text" wire:model="site_name" name="app_name" id="app_name"
                                         autocomplete="app_name"
                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+
+                                        <x-jet-input-error for="site_name" class="mt-2" />
                                 </div>
                                 <div class="col-span-6 sm:col-span-6">
 
@@ -29,11 +31,9 @@
                                         <label for="toggle"
                                             class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
                                     </div>
-                                    <label for="toggle" class="text-gray-700 text-sm font-medium ">Enable Schedule
-                                        (Enable or Diasble the schedule worker)</label>
-
+                                    <label for="toggle" class="text-gray-700 text-sm font-medium ">Enable Schedule (Enable or Diasble the schedule worker)</label>
+                                    <x-jet-input-error for="schedule_enabled" class="mt-2" />
                                 </div>
-
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="schedule" class="block text-sm font-medium text-gray-700 ">Schedule
@@ -42,6 +42,7 @@
                                     <input type="text" wire:model="schedule" name="schedule" id="schedule"
                                         autocomplete="family-name"
                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        <x-jet-input-error for="schedule" class="mt-2" />
                                 </div>
 
                                 <div class="col-span-12 sm:col-span-12">
@@ -50,6 +51,7 @@
                                     <input type="text" name="server" id="server" wire:model="server"
                                         autocomplete="server"
                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    <x-jet-input-error for="server" class="mt-2" />
 
 
                                 </div>
@@ -58,8 +60,6 @@
                                     <a class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                         wire:click="suggest">Toggle Suggesions</a>
                                     <div class="px-2"> 
-
-              
                                         
                                     @if ($suggested)
                                     <table class="min-w-max divide-y divide-x divide-gray-200">
@@ -88,48 +88,6 @@
                                     
                                     @endif
                                 </div>
-                                </div>
-
-                                <div class="col-span-12 sm:col-span-12">
-
-                                    <div
-                                        class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                        <input type="checkbox" name="schedule_enable" id="schedule_enable"
-                                            class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
-                                        <label for="toggle"
-                                            class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                                    </div>
-                                    <label for="toggle" class="text-gray-700 text-sm font-medium ">Show Average (If
-                                        enabled, the average value for speedtest will be shown in the widget)</label>
-
-                                </div>
-
-                                <div class="col-span-12 sm:col-span-12">
-
-                                    <div
-                                        class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                        <input type="checkbox" name="schedule_enable" id="schedule_enable"
-                                            class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
-                                        <label for="toggle"
-                                            class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                                    </div>
-                                    <label for="toggle" class="text-gray-700 text-sm font-medium ">Show Max (If enabled,
-                                        the maximum value for speedtest will be shown in the widget)</label>
-
-                                </div>
-
-                                <div class="col-span-12 sm:col-span-12">
-
-                                    <div
-                                        class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                        <input type="checkbox" name="schedule_enable" id="schedule_enable"
-                                            class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
-                                        <label for="toggle"
-                                            class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                                    </div>
-                                    <label for="toggle" class="text-gray-700 text-sm font-medium ">Show Min (If enabled,
-                                        the minimum value for speedtest will be shown in the widget)</label>
-
                                 </div>
                             </div>
 
