@@ -51,6 +51,7 @@ jobs:
       run: |
          rm -f storage/database/homelab.sqlite
          rm -f .env
+         rm -f node_modules
 
     - name: Prepare
       id: prep
