@@ -55,23 +55,30 @@
 
                                 </div>
 
-
-
                                 <div class="col-span-12 sm:col-span-12">
-                                    <label for="overview_time"
-                                        class="block text-sm font-medium text-gray-700 ">Speedtest Overview Time (The
-                                        hour (24-hour format )that the daily average notification will be sent) </label>
-                                    <input type="number" name="overview_time" id="overview_time"
+                                    <label for="telgram_bot_token"
+                                        class="block text-sm font-medium text-gray-700 "> Telegram API Token </label>
+                                    <input type="text" name="telgram_bot_token" id="telgram_bot_token" wire:model="telgram_bot_token"
                                         autocomplete="family-name"
                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                 </div>
+
+
+                                <div class="col-span-12 sm:col-span-12">
+                                    <label for="telgram_chat_id"
+                                        class="block text-sm font-medium text-gray-700 " > Telegram Chat id </label>
+                                    <input type="number" wire:model="telgram_chat_id" name="telgram_chat_id" id="telgram_chat_id"
+                                        autocomplete="family-name"
+                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
+
 
                                 <div class="col-span-12 sm:col-span-12">
                                     <label for="threshold_alert_percent"
                                         class="block text-sm font-medium text-gray-700">Threshold Alert Percentage (When
                                         any value of a speedtest is x percent lower than the average, a notification
                                         will be sent)</label>
-                                    <input type="text" name="threshold_alert_percent" id="threshold_alert_percent"
+                                    <input wire:model="notification_threshold" type="text" name="threshold_alert_percent" id="threshold_alert_percent"
                                         autocomplete="server"
                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                 </div>
@@ -80,7 +87,7 @@
 
                                     <div
                                         class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                        <input type="checkbox" name="threshold_alert_absolute_notification"
+                                        <input type="checkbox" name="threshold_alert_absolute_notification" wire:model="enable_threshold_notification"
                                             id="threshold_alert_absolute_notification"
                                             class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
                                         <label for="toggle"
@@ -90,25 +97,22 @@
                                         Absolute Notification (Enable/Disable absolute threshold notifications) </label>
                                 </div>
 
+                                <div class="col-span-12 sm:col-span-12">
+                                    <label for="upload_bandwidth"
+                                        class="block text-sm font-medium text-gray-700 " > Upload bandwidth</label>
+                                    <input type="number" wire:model="upload_bandwidth" name="upload_bandwidth" id="upload_bandwidth"
+                                        autocomplete="family-name"
+                     upload_bandwidth                   class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
 
                                 <div class="col-span-12 sm:col-span-12">
-                                    <label for="threshold_alert_absolute_download"
-                                        class="block text-sm font-medium text-gray-700 ">Threshold Alert Absolute
-                                        Download (When the download is lower than this value, a notification will be
-                                        sent. Leave blank to disable) </label>
-                                    <input type="number" name="threshold_alert_absolute_download"
-                                        id="threshold_alert_absolute_download" autocomplete="family-name"
+                                    <label for="download_bandwidth"
+                                        class="block text-sm font-medium text-gray-700 " > Download bandwidth</label>
+                                    <input type="number" wire:model="download_bandwidth" name="download_bandwidth" id="download_bandwidth"
+                                        autocomplete="family-name"
                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                 </div>
-                                <div class="col-span-12 sm:col-span-12">
-                                    <label for="threshold_alert_absolute_upload"
-                                        class="block text-sm font-medium text-gray-700 ">Threshold Alert Absolute Upload
-                                        (When the upload is lower than this value, a notification will be sent. Leave
-                                        blank to disable) </label>
-                                    <input type="number" name="threshold_alert_absolute_upload"
-                                        id="threshold_alert_absolute_upload" autocomplete="family-name"
-                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                </div>
+
                                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                                     <button type="submit"
                                         class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

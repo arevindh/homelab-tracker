@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Settings;
 use App\Models\Speedtest;
 use App\Notifications\SpeedtestNotification;
+use App\Notifications\SpeedtestThresholdAlert;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
@@ -104,9 +105,8 @@ class RunSpeedtestCommand extends Command
             $speedtest->save();
             $this->info("Speedtest successful");
             Log::info('Speedtest successful');
-            
-            $this->notify($speedtest);
 
+            $this->notify($speedtest);
         } catch (\Throwable $th) {
             $speedtest->status = "failed";
             $speedtest->save();
@@ -118,6 +118,8 @@ class RunSpeedtestCommand extends Command
 
     private function notify(Speedtest $result)
     {
+        $text = "";
+
         if (
             Settings::getValue('speedtest', 'single_notification') == "yes"
             && !empty(Settings::getValue('telegram', 'telgram_bot_token'))
@@ -128,6 +130,49 @@ class RunSpeedtestCommand extends Command
                     ->notify(new SpeedtestNotification($result));
             } catch (\Throwable $th) {
                 $this->error("Notification failed");
+            }
+        }
+
+
+
+        //
+        $notification_threshold = Settings::getValue('speedtest', 'notification_threshold');
+
+        Log::debug('data', [
+            'notification_threshold' => $notification_threshold,
+            'upload_bandwidth' => $result->upload_bandwidth,
+            'download_bandwidth' => $result->download_bandwidth,
+        ]);
+
+        if (Settings::getValue('speedtest', 'enable_threshold_notification') == "yes"  && !empty($notification_threshold)) {
+
+            $upload_bandwidth =   Settings::getValue('speedtest', 'upload_bandwidth');
+            $download_bandwidth =   Settings::getValue('speedtest', 'download_bandwidth');
+
+
+            Log::debug('diff', [
+                'UP' => ($upload_bandwidth * ($notification_threshold / 100)),
+                'DOWN' => ($download_bandwidth * ($notification_threshold / 100)),
+                'max_download_bandwidth' => $download_bandwidth,
+                'max_upload_bandwidth' => $upload_bandwidth
+            ]);
+
+            if (($upload_bandwidth * ($notification_threshold / 100) > $result->upload_bandwidth)) {
+
+                $text .= "Upload speed below required value \n";
+            }
+
+            if ($download_bandwidth * ($notification_threshold / 100) > $result->download_bandwidth) {
+                $text .=  "Download speed below required value \n";
+            }
+
+            if (!empty($text)) {
+                try {
+                    Notification::route('telegram', Settings::getValue('telegram', 'telgram_chat_id'))
+                        ->notify(new SpeedtestThresholdAlert($result, $text));
+                } catch (\Throwable $th) {
+                    $this->error("Notification failed");
+                }
             }
         }
     }
