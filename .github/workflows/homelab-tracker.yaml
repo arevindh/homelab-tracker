@@ -49,9 +49,9 @@ jobs:
 
     - name: Delete Create Database after testing
       run: |
-         rm -f storage/database/homelab.sqlite
-         rm -f .env
-         rm -f node_modules
+         rm -r storage/database/homelab.sqlite
+         rm -r .env
+         rm -rf node_modules
 
     - name: Prepare
       id: prep
