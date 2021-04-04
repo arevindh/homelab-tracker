@@ -71,7 +71,7 @@
                         </span>
                     </div>
                     <div class="flex flex-col justify-center">
-                        <div class="text-lg font-black">{{convertToReadableSize($latest->ping_jitter ?? 0)}}</div>
+                        <div class="text-lg font-black">{{$latest->ping_jitter ?? 0}} ms </div>
                         <div class="text-sm">Max : {{$stats->max_ping_jitter ?? 0}} ms</div>
                         <div class="text-xs">Min : {{$stats->min_ping_jitter ?? 0}} ms</div>
                         <div class="text-xs">Avg : {{$stats->avg_ping_jitter ?? 0}} </div>
