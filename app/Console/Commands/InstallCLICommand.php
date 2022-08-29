@@ -63,7 +63,7 @@ class InstallCLICommand extends Command
 
         $this->info("Speedtest CLI is maintained by the Ookla team (https://www.speedtest.net/apps/cli) ");
 
-        $dl_url = "https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-$arch-linux.tgz";
+        $dl_url = "https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-$arch.tgz";
         $contents = file_get_contents($dl_url);
 
         $this->info("Downloading File " . $dl_url);
